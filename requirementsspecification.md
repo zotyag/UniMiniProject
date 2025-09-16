@@ -1,14 +1,18 @@
 # Követelmény Specifikáció
 
+## 1. Jelenlegi helyzet
 
+Az interneten számos viccportál van,ahol az emberek különféle vicceket olvashatnak különböző témákban , legyen szó Mórickás történetektől kezdve , állatos vicceken át , megbotránkoztatóbb, trágárabb viccekig . Viszont ezekkel az a baj hogy általában ezeket a felhasználó elolvassa, és nevet rajtuk, és ennyi. Ezeket általában más oldalakról vannak szedve vagy ősrégiek, ez hosszabb távon kevesebb felhasználót jelent.
 
-\- 1. Jelenlegi helyzet
+Ezt szeretné a portál kicsit megváltoztatni, még pedig úgy hogy jogot add a felhasználoknak saját vicc írásában. Itt is előjöhet az ősrégi/ismételt viccek de kisebb az esély. Ezzel interaktívabb illetve személyesebbé válik a többi viccportálokhoz képest.
 
+## 2. Vágyálom rendszer
 
+A fejlesztés célja egy letisztult, mobilfirst, reszponzív webalkalmazás létrehozása, amely lehetővé teszi a felhasználók számára, hogy szöveges vicceket posztoljanak. A rendszer regisztráció után biztosít lehetőséget viccek beküldésére, amelyeket minden látogató elolvashat.
 
-\- 2. Vágyálom rendszer
+A felhasználók értékelhetik az egymás által írt vicceket like és dislike gombokkal. A rendszer képes ezen értékelések alapján a vicceket többféle szempontból is rendezni a viccek népszerűségétől függően. Ez segíti a felhasználókat, hogy gyorsan megtalálják a legjobb vicceket.
 
-
+A moderáció egyszerű, admin jogosultsággal történik: az adminisztrátorok törölhetnek nem megfelelő bejegyzéseket, így biztosítva a közösségi szabályok betartását.
 
 ## 3. Jelenlegi üzleti folyamatok
 
@@ -28,7 +32,7 @@ A jelenlegi megoldások nem teszik lehetővé a felhasználók számára, hogy:
 
 
 
-\- 4. Igényelt üzleti folyamatok 
+## 4. Igényelt üzleti folyamatok
 
 
 
@@ -70,6 +74,5 @@ Nemzetközi terjeszkedésnél a célországok adatvédelmi és fogyasztóvédelm
 
 
 \- 7. Fogalomszótár
-
 
 

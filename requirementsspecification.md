@@ -80,3 +80,9 @@ Nemzetközi terjeszkedésnél a célországok adatvédelmi és fogyasztóvédelm
 6. Két szerepkör kezelése (admin, user) - a user alapjogokkal rendelkezik posztolni és nézni tudja a vicceket, az admin pedig moderálni tudja ezeket, szükség esetén törölni
 
 ## 7. Fogalomszótár
+
+* reszponzív: a webalkalmazás felhasználói felület az adott képernyőhoz igazodik, hogy minden képernyőméreten jól nézzen ki.
+* mobilfirst: a felhasználói felület elsősorban úgy van kialakítva, hogy az elsősorban mobileszközökön jól nézzen ki.
+* W3C specifikéció: <https://www.w3.org/standards/about/>
+* WCAG 2.1 AA: <https://www.w3.org/TR/WCAG21/>
+* OWASP irányelvei: <https://owasp.org/www-project-secure-coding-practices-quick-reference-guide/>

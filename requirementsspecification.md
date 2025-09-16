@@ -1,15 +1,38 @@
-\## 1. Jelenlegi helyzet
+# Követelmény Specifikáció
 
 
 
-Az interneten számos viccportál van,ahol az emberek különféle vicceket olvashatnak különböző témákban , legyen szó Mórickás történetektől kezdve , állatos vicceken át , megbotránkoztatóbb, trágárabb viccekig . Viszont ezekkel az a baj hogy általában ezeket a felhasználó elolvassa, és nevet rajtuk, és ennyi. Ezeket általábban más oldalakról vannak szedve vagy ősrégiek, ez hosszabb távon kevesebb felhasználót jelent. 
+## 1. Jelenlegi helyzet
+>>>>>>> 10ad4a13a5913b9111e2236658d954967fe05d0a
+
+
+
+Az interneten számos viccportál van,ahol az emberek különféle vicceket olvashatnak különböző témákban , legyen szó Mórickás történetektől kezdve , állatos vicceken át , megbotránkoztatóbb, trágárabb viccekig . Viszont ezekkel az a baj hogy általában ezeket a felhasználó elolvassa, és nevet rajtuk, és ennyi. Ezeket általában más oldalakról vannak szedve vagy ősrégiek, ez hosszabb távon kevesebb felhasználót jelent. 
 
 
 Ezt szeretné a portál kicsit megváltoztatni, még pedig úgy hogy jogot add a felhasználoknak saját vicc írásában. Itt is előjöhet az ősrégi/ismételt viccek de kisebb az esély. Ezzel interaktívabb illetve személyesebbé válik a többi viccportálokhoz képest.
 
 
 
+<<<<<<< HEAD
 \## 2. Vágyálom rendszer
+=======
+## 3. Jelenlegi üzleti folyamatok
+
+A felhasználók vicceket többnyire közösségi médián keresztül találnak, ahol a tartalom gyakran keveredik más típusú posztokkal. A viccek megosztása spontán módon történik, nincs kategorizálás vagy minőségi szűrés. A felhasználók passzív szerepet töltenek be, nem tudnak aktívan keresni vagy szűrni a számukra releváns humoros tartalmat.
+
+A vicces tartalom felfedezése jelenleg véletlenszerű és időigényes. A felhasználóknak több platformot kell bejárniuk, hogy megtalálják a számukra megfelelő humorstílust és témákat. Nincs hatékony keresési mechanizmus, amely lehetővé tenné a specifikus vicc-típusok gyors megtalálását.
+
+A jelenlegi megoldások nem teszik lehetővé a felhasználók számára, hogy:
+
+* Kedvenc vicceiket egy helyen gyűjtsék
+
+* Személyre szabott ajánlásokat kapjanak
+
+* Közvetlenül kapcsolatba lépjenek a vicces tartalmakat készítő alkotókkal
+
+* Kategóriák szerint böngésszenek a számukra érdekes témakörökben
+>>>>>>> 10ad4a13a5913b9111e2236658d954967fe05d0a
 
 
 

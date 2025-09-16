@@ -3,7 +3,6 @@
 
 
 ## 1. Jelenlegi helyzet
->>>>>>> 10ad4a13a5913b9111e2236658d954967fe05d0a
 
 
 
@@ -14,9 +13,8 @@ Ezt szeretné a portál kicsit megváltoztatni, még pedig úgy hogy jogot add a
 
 
 
-<<<<<<< HEAD
-\## 2. Vágyálom rendszer
-=======
+## 2. Vágyálom rendszer
+
 ## 3. Jelenlegi üzleti folyamatok
 
 A felhasználók vicceket többnyire közösségi médián keresztül találnak, ahol a tartalom gyakran keveredik más típusú posztokkal. A viccek megosztása spontán módon történik, nincs kategorizálás vagy minőségi szűrés. A felhasználók passzív szerepet töltenek be, nem tudnak aktívan keresni vagy szűrni a számukra releváns humoros tartalmat.
@@ -32,25 +30,21 @@ A jelenlegi megoldások nem teszik lehetővé a felhasználók számára, hogy:
 * Közvetlenül kapcsolatba lépjenek a vicces tartalmakat készítő alkotókkal
 
 * Kategóriák szerint böngésszenek a számukra érdekes témakörökben
->>>>>>> 10ad4a13a5913b9111e2236658d954967fe05d0a
 
 
 
-\## 3. Jelenlegi üzleti folyamatok
+
+## 4. Igényelt üzleti folyamatok
 
 
 
-\## 4. Igényelt üzleti folyamatok
+## 5. A rendszerre vonatkozó szabályok
 
 
 
-\## 5. A rendszerre vonatkozó szabályok
+## 6. Követelménylista
 
 
 
-\## 6. Követelménylista
-
-
-
-\## 7. Fogalomszótár
+## 7. Fogalomszótár
 

@@ -44,7 +44,12 @@ A jelenlegi megoldások nem teszik lehetővé a felhasználók számára, hogy:
 
 ## 6. Követelménylista
 
-
+1. Mobilfirst
+2. Reszponzív dizájn
+3. Értékelési rendszer (jó-rossz, like-dislike)
+4. Könnyen üzemeltethető rendszer
+5. Népszerűség szerinti rendszerezés
+6. Két szerepkör kezelése (admin, user) - a user alapjogokkal rendelkezik posztolni és nézni tudja a vicceket, az admin pedig moderálni tudja ezeket, szükség esetén törölni
 
 ## 7. Fogalomszótár
 

@@ -32,6 +32,13 @@ A jelenlegi megoldások nem teszik lehetővé a felhasználók számára, hogy:
 
 ## 4. Igényelt üzleti folyamatok
 
+1. Felhasználói regisztráció és bejelentkezés: A látógatók regisztrálhatnak az oldalon egy egyszerű űrlap segítségével (felhasználónév és jelszó megadásával). A regisztrált felhasználók bejelentkezhetnek, vicceket tölthetnek fel, valamint értékelhetik mások vicceit (like/dislike).
+2. Viccfeltöltés: a bejelentkezett felhasználók új vicceket tehetnek közzé szövegmezőn keresztül. A beküldött viccek mindenki számára elérhetővé válnak. A rendszer naplózza ezek beküldési idejét és a felhasználó azonosítóját.
+3. Viccek böngészése és értékelése: Minden látogató megtekintheti a vicceket. A felület lehetőséget nyújt az értékelésre, like és dislike gombokkal jelezhetik, mennyire tetszett nekik az adott vicc.
+4. Rendezés népszerűség és idő alapján: A felhasználók különböző szempontok szerint rendezhetik a vicceket.
+5. Moderáció: Az adminisztrátor joggal rendelkező felhasználóknak lehetőségük van törölni azokat a vicceket, melyek nem felelnek meg a felhasználói szabályoknak.
+6. Reszponzív felhasználói élmény: a weboldal felülete mobiltelefonon és asztali böngészőben is kényelmesen használható. A kialakítás elsősorban mobilos elérésre optimalizált.
+
 ## 5. A rendszerre vonatkozó szabályok
 
 ## 6. Követelménylista

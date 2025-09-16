@@ -1,10 +1,14 @@
 # Követelmény Specifikáció
 
+
+
 ## 1. Jelenlegi helyzet
 
 Az interneten számos viccportál van,ahol az emberek különféle vicceket olvashatnak különböző témákban , legyen szó Mórickás történetektől kezdve , állatos vicceken át , megbotránkoztatóbb, trágárabb viccekig . Viszont ezekkel az a baj hogy általában ezeket a felhasználó elolvassa, és nevet rajtuk, és ennyi. Ezeket általában más oldalakról vannak szedve vagy ősrégiek, ez hosszabb távon kevesebb felhasználót jelent.
 
 Ezt szeretné a portál kicsit megváltoztatni, még pedig úgy hogy jogot add a felhasználoknak saját vicc írásában. Itt is előjöhet az ősrégi/ismételt viccek de kisebb az esély. Ezzel interaktívabb illetve személyesebbé válik a többi viccportálokhoz képest.
+
+
 
 ## 2. Vágyálom rendszer
 
@@ -13,6 +17,8 @@ A fejlesztés célja egy letisztult, mobilfirst, reszponzív webalkalmazás lét
 A felhasználók értékelhetik az egymás által írt vicceket like és dislike gombokkal. A rendszer képes ezen értékelések alapján a vicceket többféle szempontból is rendezni a viccek népszerűségétől függően. Ez segíti a felhasználókat, hogy gyorsan megtalálják a legjobb vicceket.
 
 A moderáció egyszerű, admin jogosultsággal történik: az adminisztrátorok törölhetnek nem megfelelő bejegyzéseket, így biztosítva a közösségi szabályok betartását.
+
+
 
 ## 3. Jelenlegi üzleti folyamatok
 
@@ -69,10 +75,16 @@ Nemzetközi terjeszkedésnél a célországok adatvédelmi és fogyasztóvédelm
 
 
 
-\- 6. Követelménylista
+## 6. Követelménylista
+
+1. Mobilfirst
+2. Reszponzív dizájn
+3. Értékelési rendszer (jó-rossz, like-dislike)
+4. Könnyen üzemeltethető rendszer
+5. Népszerűség szerinti rendszerezés
+6. Két szerepkör kezelése (admin, user) - a user alapjogokkal rendelkezik posztolni és nézni tudja a vicceket, az admin pedig moderálni tudja ezeket, szükség esetén törölni
 
 
 
-\- 7. Fogalomszótár
-
+## 7. Fogalomszótár
 

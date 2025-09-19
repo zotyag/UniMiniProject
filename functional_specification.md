@@ -55,9 +55,102 @@ A rendszer tehát hatékonyabbá, áttekinthetőbbé és élvezhetőbé teszi a 
 
 ## 5. Használati esetek
 
-## 6. Megfeleltetés, hogyan fedik le a használati esetek a követelményeket
+### 1. Felhasználókezelés
 
-## 7. Fogalomszótár
+#### 1.1. Regisztráció
+
+* 1.1.1 A rendszernek lehetővé kell tennie új felhasználók regisztrációját.
+* 1.1.2 A regisztráció során felhasználónév és jelszó megadása kötelező.
+* 1.1.3 A rendszer ellenőrízze, hogy a felhasználónév egyedi.
+* 1.1.4 A regisztráció után a felhasználó automatikusan "user" jogosultságot kap
+* 1.1.5 A jelszót biztonságosan kell tárolni (hash-elve).
+
+#### 1.2. Bejelentkezés
+
+* 1.2.1 A felhasználó be tud jelentkezni érvényes adatokkal.
+* 1.2.2 Sikertelen bejelentkezés esetén hibaüzenetet kell megjeleníteni.
+* 1.2.3 A rendszer kezelje a felhasználói munkamenetet (session vagy token).
+
+#### 1.3. Jogosultságkezelés
+
+* 1.3.1 A rendszer kétféle jogosultságot kezel: "user" és "admin"
+* 1.3.2 A "user" szerepkörrel rendelkező felhasználó saját vicceket tehet közzé.
+* 1.3.3 Az "admin" szerepkörrel rendelkező felhasználó bármely viccet törölhet.
+
+### 2. Vicckezelés
+
+#### 2.1. Új vicc beküldése
+
+* 2.1.1 Csak bejelentkezett felhasználók küldhetnek be viccet.
+* 2.1.2 A vicc tartalma nem lehet üres, minimális hosszt ell kell érnie.
+* 2.1.3 A rendszer mentse el a vicc szövegét, beküldő felhasználó nevét és az időbélyeget.
+* 2.1.4 A beküldés után a vicc azonnal megjelenjen a főoldalon.
+
+#### 2.2. Viccek megjelenítése
+
+* 2.2.1 Minden látogató számára elérhető a viccek listája.
+* 2.2.2 A lista alapértelmezés szerint időrendben legyen rendezve (legújabb elöl).
+* 2.2.3 Minden vicchez meg kell jeleníteni:
+  * Beküldő felhasználónevét
+  * Beküldés időpontját
+  * Like/dislike számot
+
+#### 2.3. Rendezés
+
+* 2.3.1 A felhasználó válthat rendezési módok között:
+  * Népszerűség szerint (legtöbb pozitív értékeléssel rendelkező elöl)
+  * Időrend szerint (legújabb elöl)
+* 2.3.2 A rendezés ne okozzon újratöltést (lehetőleg dinamikusan történjen)
+
+#### 2.4. Vicc törlése
+
+* 2.4.1 Az admin törölheti bármely felhasználó viccét.
+* 2.4.2 Törlés előtt megerősítő kérdést kell megjeleníteni.
+
+### 3. Értékelés
+
+#### 3.1. Like/dislike funkció
+
+* 3.1.1 Csak bejelentkezett felhasználók értékelhetnek.
+* 3.1.2 Minden felhasználó egy viccet egyszer értékelhet.
+* 3.1.3 A felhasználó módosíthatja az értékelését.
+* 3.1.4 A rendszer frissítse a vicc aktuális like/dislike számát.
+
+#### 3.2. Népszerűség számítása
+
+* 3.2.1 A népszerűség számítása: like-ok száma minusz dislike-ok száma.
+* 3.2.2 A népszerűségi sorrend e szám alapján történjen csökkenő sorrendben.
+
+### 4. Felület és dizájn
+
+#### 4.1. Mobil-first reszponzív dizájn
+
+* 4.1.1 Az oldal alapértelmezett nézete mobilra optimalizált legyen.
+* 4.1.2 Az oldal kinézete illeszkedjen tableten és asztali nézetben is.
+* 4.1.3 A felületelemek könnyen használhatóak legyenek érintőképernyőn.
+
+#### 4.2. Felhasználói élmény
+
+* 4.2.1 A visszajelzések (pl. sikeres bejelentkezés, vicc törölve) jelenjenek meg azonnal.
+* 4.2.2 Hibás művelet esetén részletes hibaüzenetet kell adni.
+
+### 5. Biztonság és adatvédelem
+
+#### 5.1. Adatkezelés
+
+* 5.1.1 A jelszavakat biztonságosan kell tárolni.
+* 5.1.2 A rendszer ne tároljon érzékeny adatokat nyílt formában.
+
+#### 5.2. Jogosultság-ellenőrzés
+
+* 5.2.1 Minden művelet előtt ellenőrizni kell a felhasználó szerepkörét.
+* 5.2.2 Az admin funkciók nem érhetőek el "user" szerepkörrel.
+
+## 6. Használati esetek
+
+## 7. Megfeleltetés, hogyan fedik le a használati esetek a követelményeket
+
+## 8. Fogalomszótár
 
 * reszponzív: a webalkalmazás felhasználói felület az adott képernyőhoz igazodik, hogy minden képernyőméreten jól nézzen ki.
 * mobilfirst: a felhasználói felület elsősorban úgy van kialakítva, hogy az elsősorban mobileszközökön jól nézzen ki.

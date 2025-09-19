@@ -53,7 +53,7 @@ A tervezett rendszer célja, hogy ezt a széttagolt folyamatot leváltsa egy kö
 
 A rendszer tehát hatékonyabbá, áttekinthetőbbé és élvezhetőbé teszi a humoros tartalmak létrehozását, megosztását és fogyasztását egy közösségi alapon működő online felületen
 
-## 5. Használati esetek
+## 5. Követelménylista
 
 ### 1. Felhasználókezelés
 

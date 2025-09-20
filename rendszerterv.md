@@ -90,6 +90,60 @@ Rendezés: ORDER BY popularity DESC vagy created_at DESC a kliens választása a
 * A listázás és rendezés optimalizálására indexeket kell használni a népszerűség aggregátumhoz, időzített frissítéssel, alternatívaként íráskor fenntartott számlálók is alkalmazhatók tranzakciós védelemmel.
 * A kliens oldali élményhez a dinamikus frissítés minimalizálja az újratöltést, a hozzáférhetőség és szabványkövetés a W3C és WCAG 2.1 AA elvek mentén történik.
 
+### DBML
+```
+Table users {
+id integer [pk, increment]
+username varchar [unique, not null]
+password_hash varchar [not null]
+role user_role [not null, default: 'user']
+created_at timestamp [not null]
+}
+
+Table jokes {
+id integer [pk, increment]
+author_id integer [not null]
+content text [not null]
+length joke_length [not null]
+created_at timestamp [not null]
+deleted_at timestamp
+popularity integer [default: 0, note: 'Cached popularity score']
+}
+
+Table ratings {
+id integer [pk, increment]
+user_id integer [not null]
+joke_id integer [not null]
+value smallint [not null, note: ' -1 or 1']
+created_at timestamp [not null]
+updated_at timestamp [not null]
+}
+
+// Kapcsolatok
+Ref: jokes.author_id > users.id
+Ref: ratings.user_id > users.id
+Ref: ratings.joke_id > jokes.id
+
+// Enum a felhasználói szerepkörökhöz
+Enum user_role {
+user
+admin
+}
+
+// Enum a vicc hosszához
+Enum joke_length {
+short
+medium
+long
+}
+
+// Indexek és megkötések
+// A 'ratings' táblában egyedi kulcs, hogy egy felhasználó egy viccet csak egyszer értékelhessen
+// Index { user_id, joke_id } [unique]
+```
+![DBML Image](.Markdown_Images/Untitled.svg)
+
+
 
 ## 9. Implementációs terv
 

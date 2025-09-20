@@ -117,3 +117,21 @@ A tesztelés során ellenőrízzük:
 A szoftver webes felületéhez csak egy ajánlott böngésző telepítése szükséges (Google Chrome, Firefox, Opera, Safari), külön szoftver nem kell hozzá. A webszerverre közvetlenül az internetről kapcsolódnak rá a kliensek.
 
 ## 12. Karbantartási terv
+
+A karbantartás célja, hogy az alkalmazás stabil, biztonságos és naprakész maradjon a használat során, valamint biztosítsa a gyors hibajavítást és a további fejlesztések lehetőségét.
+
+### Karbantartás típusai
+
+1. Corrective Maintenance: A felhasználók vagy tesztelők által jelzett hibák javítása.
+2. Adaptive Maintenance: A rendszer frissítése a környezet változásai miatt.
+3. Perfective Maintenance: Új funkciók hozzáadása, teljesítmény és megbízhatóság javítása.
+4. Preventive Maintenance: Olyan problémák elhárítása, amelyek még nem kritikusak, de később problémát okozhatnak.
+
+### Karbantartási folyamat
+
+1. Hiba vagy igény észlelése: felhasználói jelentés, tesztelés vagy fejlesztői megfigyelés
+2. Elemzés és osztályozás: hibajavítás, környezeti frissítés vagy funkcióbővítés szükséges-e.
+3. Módosítás: a hibát, frissítést vagy új funkciót implementáljuk a megfelelő modulba
+4. Tesztelés: az érintett funkciók újratesztelése unit és integrációs tesztekkel.
+5. Deployment: a frissített alkalmazás telepítése
+6. Dokumentálás: minden változást dokumentálni kell, verziókövetéssel és commit üzenetekkel.

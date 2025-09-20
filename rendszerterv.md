@@ -10,6 +10,9 @@
 
 ## 5. Fizikai környezet
 
+A megoldás webes platformra készül, mobil-first megközelítéssel és reszponzív kialakítással, így okostelefonon, táblagépen és PC-n is egyaránt használható böngészőből. A backend Node.js környezetben fut, Railway felhőalapú hosztingon konténerizált vagy menedzselt szolgáltatásként, PostgreSQL adatbázissal.
+A hosztolás biztosítja a verziózott környezeteket és az automatikus deploy-t. A kliens oldali réteg HTML, CSS és egyszerű JavaScript alapon készül, reszponzív felülettel és azonnali visszajelzésekkel, a hozzáférhetőségre (WCAG 2.1 AA) és W3C ajánlásokra tekintettel. A fejlesztői eszköztár: Node.js (Express), PostgreSQL (SQL kliens/ORM), Railway projekt és DB, Git verziókezelés, valamint böngésző fejlesztői eszközök. A jelszavak hash-elve tárolódnak és a munkamenet session vagy token alapon működik, OWASP irányelvek követésével.
+
 ## 6. Absztrakt domain modell
 
 ## 7. Architekturális terv

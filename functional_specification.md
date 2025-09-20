@@ -197,7 +197,7 @@ Vegyük ezeket sorba:
 
 
 
- 	* Biztonság és adatvédelem: Az adminoknak biztosra kell menniük, hogy a felhasználók adatait biztonságos helyen tárolják amihez csak ők férhetnek hozzá. Valamint "userek" nem 	rendelkezhetnek az admin szerepkör funkcióival.
+* Biztonság és adatvédelem: Az adminoknak biztosra kell menniük, hogy a felhasználók adatait biztonságos helyen tárolják amihez csak ők férhetnek hozzá. Valamint "userek" nem 	rendelkezhetnek az admin szerepkör funkcióival.
 
 ## 8\. Fogalomszótár
 

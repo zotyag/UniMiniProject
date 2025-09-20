@@ -15,9 +15,81 @@ A hosztolás biztosítja a verziózott környezeteket és az automatikus deploy-
 
 ## 6. Absztrakt domain modell
 
+A fő entitások: Felhasználó, Vicc, Értékelés, valamint szerepkörök User/Admin; a kapcsolatok a publikálás és értékelés folyamatait fedik le. A Felhasználó entitás egyedi felhasználónévvel és hash-elt jelszóval rendelkezik, és pontosan egy szerepkörrel (user vagy admin). Csak hitelesített felhasználó hozhat létre viccet vagy adhat értékelést. A Vicc entitást egy felhasználó hozza létre, tartalmazza a szöveget, időbélyeget és megjelenítéshez szükséges metaadatokat. Törlését admin végezheti moderálási szabályok alapján vagy a létrehozó. Az Értékelés entitás egy felhasználó és egy vicc között 1:1 kardinalitású (egy felhasználó egy adott viccet egyszer értékel, de módosíthatja), és a népszerűség a like-ok mínusz dislike-ok aggregációjával számítható.
+
 ## 7. Architekturális terv
 
+### Backend (Node.js + Express):
+
+* REST API végpontok a regisztrációhoz, bejelentkezéshez, viccek kezeléséhez és értékeléshez, az API JSON formátumban kommunikál a kliensekkel.
+
+* Adatkezelés PostgreSQL-ben, az alkalmazás szerepkör alapú hozzáférés-ellenőrzést végez minden védett végpont előtt (user/admin).
+
+* Hitelesítés: bejelentkezéskor session vagy token alapú munkamenet jön létre, a jelszavak biztonságosan, hash-elve tárolódnak, minden admin funkcióhoz külön jogosultság-ellenőrzés tartozik.
+
+* Biztonság: OWASP ajánlások szerinti bevált gyakorlatok, naplózás és hibakezelés részletes hibaüzenetekkel a kliens felé (érzékeny adatok nélkül).
+
+### Adatbázis szerver (PostgreSQL):
+
+* Normalizált sémák a felhasználók, viccek és értékelések tárolására; indexek a listázási és rendezési lekérdezésekhez idő és népszerűség szerint.
+
+* Tranzakciók és egyedi kulcsok garantálják, hogy egy felhasználó egy viccet csak egyszer értékelhet, de az értékelés módosítható.
+
+### Web kliens (HTML, CSS, JS):
+
+* Mobil-first, reszponzív felület kezdőoldali vicclistával, bejelentkezés/regisztráció nézettel, vicc beküldő űrlappal és rendezésválasztóval, dinamikus frissítés oldalújratöltés nélkül.
+
+* Hozzáférés az API-hoz hitelesítés után session vagy token továbbításával; az azonnali visszajelzések biztosítják a felhasználói élményt (siker, hiba, törlés megerősítés).
+
+### Üzemeltetés (Railway):
+
+* Konténerizált Node.js szolgáltatás és menedzselt PostgreSQL, környezeti változókban tárolt titkok, automatikus build/deploy pipeline, mentési és helyreállítási eljárások dokumentálása.
+
+* Szabványok és megfelelés: W3C és WCAG 2.1 AA a frontendnél, privacy by design, security by design, licenc- és jogkezelés, közösségi irányelvek és incidenskezelés.
+
+### Példa REST API feladatleírás a szerepek és adatáramlás illusztrálására:
+
+* POST /api/auth/register: felhasználónév, jelszó; egyediség-ellenőrzés, hash-elés, alap user szerepkör. 
+* POST /api/auth/login: token vagy session létrehozása; hibakezelés sikertelen belépésnél.
+* GET /api/jokes: minden látogatónak elérhető lista; alapértelmezett rendezés: legújabb elöl; váltható népszerűség szerint.
+* POST /api/jokes: csak bejelentkezve; validáció: nem üres, minimális hossz; azonnali publikálás.
+* POST/PUT /api/jokes/:id/rate: like/dislike beállítása vagy módosítása; aggregált számlálók frissítése.
+* DELETE /api/jokes/:id: csak admin; törlés előtti megerősítés és jogosultság-ellenőrzés.
+
+
+
 ## 8. Adatbázis terv
+
+### Fő táblák és kapcsolatok:
+
+* users
+  * id (PK), username (unique), password_hash, role ENUM(‘user’, ‘admin’), created_at.
+  * Index: unique(username), idx_users_role; megjegyzés: a jelszavak hash-elve tárolódnak.
+
+* jokes
+  * id (PK), author_id (FK → users.id), content TEXT, created_at, deleted_at NULLABLE.
+  * Index: idx_jokes_created_at (listázás idő szerint), idx_jokes_author_id, opcionálisan extra népszerűség oszlop cache-eléshez.
+
+* ratings
+  * id (PK), user_id (FK → users.id), joke_id (FK → jokes.id), value SMALLINT (-1 vagy 1), created_at, updated_at.
+  * Egyedi kulcs: unique(user_id, joke_id) biztosítja, hogy egy felhasználó egy viccet csak egyszer értékeljen, érték módosítható update-tel.
+
+
+### Számított népszerűség:
+
+Népszerűség definíció: like-ok száma mínusz dislike-ok száma, lekérdezésben SUM(value) AS popularity a ratings táblán, csoportosítva joke_id szerint. Egyéb emotikonok nem számítanak bele a népszerűség számításába.
+
+Rendezés: ORDER BY popularity DESC vagy created_at DESC a kliens választása alapján, megfelelő indexeléssel és/vagy nézetekkel támogatva.
+
+### Integritási és biztonsági szabályok:
+* ON DELETE CASCADE a ratings.user_id és ratings.joke_id kapcsolatokra, hogy törléskor a kapcsolódó értékelések is konzisztensen eltűnjenek.
+* Jogosultság-ellenőrzés minden író műveletnél (vicc létrehozás, értékelés, törlés), admin-only a törlés.
+* Adatvédelem és megfelelés: minimalizált személyes adatkezelés, átlátható sütikezelés, licenc- és felelősségi szabályok a felhasználói tartalomhoz, bejelentési-eltávolítási folyamat dokumentálása.
+
+### Megjegyzés a teljesítményhez és bővíthetőséghez:
+* A listázás és rendezés optimalizálására indexeket kell használni a népszerűség aggregátumhoz, időzített frissítéssel, alternatívaként íráskor fenntartott számlálók is alkalmazhatók tranzakciós védelemmel.
+* A kliens oldali élményhez a dinamikus frissítés minimalizálja az újratöltést, a hozzáférhetőség és szabványkövetés a W3C és WCAG 2.1 AA elvek mentén történik.
+
 
 ## 9. Implementációs terv
 

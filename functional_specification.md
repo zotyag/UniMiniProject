@@ -6,13 +6,13 @@ Több viccoldal van, de ezek mind sablonosak, vagyis régi viccek tömkelege ,am
 
 Erre kellett egy megoldás, ami interaktívabbá teszi ezt a sablont és add esélyt a felhasználóknak. Ehhez a következő funkciók szükségesek:
 
-&nbsp;	 A felhasználóknak jogot kell adni saját viccek beküldésére
+ 	 \* A felhasználóknak jogot kell adni saját viccek beküldésére
 
-&nbsp;	 Szűrni lehessen az adott vicceket
+ 	 \* Szűrni lehessen az adott vicceket
 
-&nbsp;	 Felhasználok kifejthetik véleményüket tetszik/nem tetszik (like-dislike) formában a viccekről
+ 	 \* Felhasználok kifejthetik véleményüket tetszik/nem tetszik (like-dislike) formában a viccekről
 
-&nbsp;	 A beküldött vicceket az adminok moderálni tudják
+ 	 \* A beküldött vicceket az adminok moderálni tudják
 
 
 
@@ -181,23 +181,23 @@ Vegyük ezeket sorba:
 
 
 
-&nbsp;	Felhasználó kezelés: A felhasználók képesek regisztrálni az oldalra, egy beléptető rendszer segítségével, amit az adminok biztosítanak. Később a felhasználók képesek 	bejelentkezni az oldalra, a regisztrált adatok megadásával. 
+ 	\* Felhasználó kezelés: A felhasználók képesek regisztrálni az oldalra, egy beléptető rendszer segítségével, amit az adminok biztosítanak. Később a felhasználók képesek 	bejelentkezni az oldalra, a regisztrált adatok megadásával.
 
 
 
-&nbsp;	Vicckezelés: A felhasználók tudnak vicceket beküldeni, de csak akkor ha be vannak jelentkezve, ha nincsenek akkor csak nézni tudják ezeket. A felhasználók neve megjelenik ezeknél 	a vicceknél. A vicceket tudják rendezni népszerűség, illetve időrend szerint. Az adminok képesek a vicceket törlöni, ha úgy gondolják nem oda való, vagy az oldal szabályzatának 	nem felelnek meg.	
+ 	\* Vicckezelés: A felhasználók tudnak vicceket beküldeni, de csak akkor ha be vannak jelentkezve, ha nincsenek akkor csak nézni tudják ezeket. A felhasználók neve megjelenik 	ezeknél a vicceknél. A vicceket tudják rendezni népszerűség, illetve időrend szerint. Az adminok képesek a vicceket törlöni, ha úgy gondolják nem oda való, vagy az oldal 	szabályzatának 	nem felelnek meg.
 
 
 
-&nbsp;	Értékelés: A felhasználók csak akkor tudnak egy viccet like-olni vagy dislike-olni, ha be vannak jelentkezve. Ezt a felhasználók megváltoztathatják idővel, de csak egy like vagy 	dislikeot adhatnak. Minél több likeot adnak a felhasználók egy viccre annál népszerűbb lesz.
+ 	\* Értékelés: A felhasználók csak akkor tudnak egy viccet like-olni vagy dislike-olni, ha be vannak jelentkezve. Ezt a felhasználók megváltoztathatják idővel, de csak egy like 	vagy dislikeot adhatnak. Minél több likeot adnak a felhasználók egy viccre annál népszerűbb lesz.
 
 
 
-&nbsp;	Felület és dizájn: Az adminoknak létre kell hozniuk egy olyan felületet, amit a felhasználók jól tudnak használni telefonon/tableten illetve számítógépen is. Azonnal kapni fognak 	a felhasználók értesítést, sikeres vagy sikertelen bejelentkezésről illetve arról is, ha egy viccük törölve lett.
+ 	\* Felület és dizájn: Az adminoknak létre kell hozniuk egy olyan felületet, amit a felhasználók jól tudnak használni telefonon/tableten illetve számítógépen is. Azonnal kapni 	fognak 	a felhasználók értesítést, sikeres vagy sikertelen bejelentkezésről illetve arról is, ha egy viccük törölve lett.
 
 
 
-&nbsp;	Biztonság és adatvédelem: Az adminoknak biztosra kell menniük, hogy a felhasználók adatait biztonságos helyen tárolják amihez csak ők férhetnek hozzá. Valamint "userek" nem 	rendelkezhetnek az admin szerepkör funkcióival.
+ 	\* Biztonság és adatvédelem: Az adminoknak biztosra kell menniük, hogy a felhasználók adatait biztonságos helyen tárolják amihez csak ők férhetnek hozzá. Valamint "userek" nem 	rendelkezhetnek az admin szerepkör funkcióival.
 
 ## 8\. Fogalomszótár
 

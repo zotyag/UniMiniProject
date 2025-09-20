@@ -114,4 +114,6 @@ A tesztelés során ellenőrízzük:
 
 ## 11. Telepítési terv
 
+A szoftver webes felületéhez csak egy ajánlott böngésző telepítése szükséges (Google Chrome, Firefox, Opera, Safari), külön szoftver nem kell hozzá. A webszerverre közvetlenül az internetről kapcsolódnak rá a kliensek.
+
 ## 12. Karbantartási terv

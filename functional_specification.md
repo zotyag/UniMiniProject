@@ -1,6 +1,6 @@
 # Funkcionális Specifikáció
 
-## 1\. Jelenlegi helyzet
+## 1. Jelenlegi helyzet
 
 Több viccoldal van, de ezek mind sablonosak, vagyis régi viccek tömkelege ,amelyeket különböző forrásokból gyűjtöttek össze, amit a felhasználók csak elolvasnak. Ennek hátránya, hogy a felhasználok megunják, kevés időt töltenek az oldalon, ami új felhasználók hiányát fogja eredményezni hosszú távon.
 
@@ -16,7 +16,7 @@ Erre kellett egy megoldás, ami interaktívabbá teszi ezt a sablont és add es�
 
 
 
-## 2\. Vágyálom rendszer
+## 2. Vágyálom rendszer
 
 Az rendszer célja, hogy egy egyszerű, modern, mobilbarát weboldalt biztosítson a felhasználók számára, ahol vicceket oszthatnak meg egymással, valamint értékelhetik és böngészhetik mások bejegyzéseit.
 
@@ -55,9 +55,23 @@ A rendszer az alábbi főbb funkciókat látja el:
      * Vicc beküldése
      * Rendezés kiválasztása
 
-## 3\. Jelenlegi üzleti folyamatok
+## 3. Jelenlegi üzleti folyamatok
 
-## 4\. Igényelt üzleti folyamatok
+A humoros tartalmak ma jellemzően szétszórt, platformfüggetlen módon születnek és terjednek, ami laza, nehezen követhető munkafolyamatot eredményez a tartalom készítése, megtalálása, értékelése és moderálása során. Az alábbiak a tipikus “As‑Is” lépések és szereplők egy átlagos felhasználó és egy közösségi moderáció szempontjából.
+
+* Tartalom előállítás és közzététel: a felhasználók vicceket írnak és ad‑hoc módon posztolják közösségi médiában, fórumokon vagy kommentekben, egységes struktúra, metaadatok és minőségi szűrők nélkül.
+
+* Felfedezés és böngészés: a fogyasztók platformok algoritmusaira, keresőszavakra és csoportokra támaszkodnak; a releváns tartalom gyakran “elveszik” az általános hírfolyamban.
+
+* Értékelés és visszajelzés: reakciók (like/dislike/komment) platformfüggőek, nincsenek a vicsműfajra optimalizált metrikák vagy konzisztens sorrendezési elvek.
+
+* Moderáció: a nem megfelelő tartalom kezelése a platform szabályain és közösségi jelzéseken alapul, ami lassú vagy következetlen beavatkozáshoz vezethet dedikált viccoldali eszköztár nélkül.
+
+* Mérhetőség és riportálás: a tartalom teljesítménye több, külön rendszeren szóródik szét; nehéz egységes “népszerűség” vagy minőségi mutatókat képezni a döntéstámogatáshoz.
+
+
+
+## 4. Igényelt üzleti folyamatok
 
 Jelenleg a felhasználók számára nem áll rendelkezésre egy dedikált, könnyen használható weboldal, ahol egyszerűen, gyorsan és strukturáltan tudnának vicceket megosztani, illetve értékelni mások vicceit.
 
@@ -77,9 +91,9 @@ A tervezett rendszer célja, hogy ezt a széttagolt folyamatot leváltsa egy kö
 
 A rendszer tehát hatékonyabbá, áttekinthetőbbé és élvezhetőbé teszi a humoros tartalmak létrehozását, megosztását és fogyasztását egy közösségi alapon működő online felületen
 
-## 5\. Követelménylista
+## 5. Követelménylista
 
-### 1\. Felhasználókezelés
+### 1. Felhasználókezelés
 
 #### 1.1. Regisztráció
 
@@ -101,7 +115,7 @@ A rendszer tehát hatékonyabbá, áttekinthetőbbé és élvezhetőbé teszi a 
 * 1.3.2 A "user" szerepkörrel rendelkező felhasználó saját vicceket tehet közzé.
 * 1.3.3 Az "admin" szerepkörrel rendelkező felhasználó bármely viccet törölhet.
 
-### 2\. Vicckezelés
+### 2. Vicckezelés
 
 #### 2.1. Új vicc beküldése
 
@@ -134,7 +148,7 @@ A rendszer tehát hatékonyabbá, áttekinthetőbbé és élvezhetőbé teszi a 
 * 2.4.1 Az admin törölheti bármely felhasználó viccét.
 * 2.4.2 Törlés előtt megerősítő kérdést kell megjeleníteni.
 
-### 3\. Értékelés
+### 3. Értékelés
 
 #### 3.1. Like/dislike funkció
 
@@ -148,7 +162,7 @@ A rendszer tehát hatékonyabbá, áttekinthetőbbé és élvezhetőbé teszi a 
 * 3.2.1 A népszerűség számítása: like-ok száma minusz dislike-ok száma.
 * 3.2.2 A népszerűségi sorrend e szám alapján történjen csökkenő sorrendben.
 
-### 4\. Felület és dizájn
+### 4. Felület és dizájn
 
 #### 4.1. Mobil-first reszponzív dizájn
 
@@ -161,7 +175,7 @@ A rendszer tehát hatékonyabbá, áttekinthetőbbé és élvezhetőbé teszi a 
 * 4.2.1 A visszajelzések (pl. sikeres bejelentkezés, vicc törölve) jelenjenek meg azonnal.
 * 4.2.2 Hibás művelet esetén részletes hibaüzenetet kell adni.
 
-### 5\. Biztonság és adatvédelem
+### 5. Biztonság és adatvédelem
 
 #### 5.1. Adatkezelés
 
@@ -173,9 +187,9 @@ A rendszer tehát hatékonyabbá, áttekinthetőbbé és élvezhetőbé teszi a 
 * 5.2.1 Minden művelet előtt ellenőrizni kell a felhasználó szerepkörét.
 * 5.2.2 Az admin funkciók nem érhetőek el "user" szerepkörrel.
 
-## 6\. Használati esetek
+## 6. Használati esetek
 
-## 7\. Megfeleltetés, hogyan fedik le a használati esetek a követelményeket
+## 7. Megfeleltetés, hogyan fedik le a használati esetek a követelményeket
 
 Vegyük ezeket sorba:
 
@@ -199,7 +213,7 @@ Vegyük ezeket sorba:
 
 * Biztonság és adatvédelem: Az adminoknak biztosra kell menniük, hogy a felhasználók adatait biztonságos helyen tárolják amihez csak ők férhetnek hozzá. Valamint "userek" nem 	rendelkezhetnek az admin szerepkör funkcióival.
 
-## 8\. Fogalomszótár
+## 8. Fogalomszótár
 
 * reszponzív: a webalkalmazás felhasználói felület az adott képernyőhoz igazodik, hogy minden képernyőméreten jól nézzen ki.
 * mobilfirst: a felhasználói felület elsősorban úgy van kialakítva, hogy az elsősorban mobileszközökön jól nézzen ki.

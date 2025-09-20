@@ -38,6 +38,80 @@ A felhasználó böngészője a frontend HTML oldalakat tölti be, a JavaScript 
 
 ## 10. Tesztterv
 
+A tesztelés célja annak biztosítása, hogy az alkalmazás minden funkciója a specifikációnak megfelelően működjön, a felhasználói élmény stabil és biztonságos legyen, valamint a backend és az adatbázis helyesen kommunikáljon.
+
+A tesztelés során ellenőrízzük:
+
+* A felhasználói interakciókat (regisztráció, bejelentkezés, poszt létrehozás, like/dislike)
+* Az adminisztrátori funkciókat
+* A frontend-backend kommunikációt (fetch API hívások)
+* Az adatbázis műveleteket
+* A biztonsági és hozzáférési szabályokat (jelszó titkosítás, jogosultságok)
+* A reszponzív megjelenést különböző képernyőméreteken.
+
+### Tesztelés típusa
+
+* Funkcionális teszt: ellenőrízzük, hogy minden funkció megfelelően működik a felhasználói és admin felületen.
+* Integrációs teszt: a frontend és backend közötti adatátvitel, API hívások helyessége
+* Adatbázis teszt: a táblákon végrehajtott műveletek helyessége (INSERT, SELECT, UPDATE, DELETE)
+* Biztonsági teszt: jelszó titkosítás, jogosultságok.
+* UI teszt: az oldal mobilon és desktopon is használható és jól olvasható.
+* Hiba- és kivételkezelési teszt: hibás login, üres mező, nem létező poszt törlése, stb.
+
+### Tesztelési folyamat
+
+#### Regisztráció és bejelentkezés
+
+* Pozitív teszt:
+  * Új felhasználó regisztrálása érvényes adatokkal.
+  * Bejelentkezés a regisztrált felhasználóval
+* Negatív teszt:
+  * Üres mezők, már létező felhasználónév, hibás jelszó
+* Várható eredmény:
+  * Sikeres regisztráció/bejelentkezés -> átirányítás index.html-re
+  * Hibás adatok -> felhasználó értesítése, backend nem menti el az adatot
+
+#### Poszt létrehozása és lekérése
+
+* Tesztelés:
+  * Belépett felhasználó új viccet posztol
+  * Poszt megjelenik a főoldalon
+  * Poszt rendezése: legújabb/legnépszerűbb
+* Várható eredmény:
+  * Poszt helyesen jelenik meg, időbélyeg és szerző látható
+  * Rendezés a like/dislike értékek vagy timestamp szerint működik
+
+#### Poszt értékelése
+
+* Tesztelés:
+  * Felhasználó értékeli a posztokat
+  * Ellenőrizzük a backend és adatbázis értékek frissülését
+* Várható eredmény:
+  * Like/dislike számláló valós időben frissül
+
+#### Admin funkciók
+
+* Tesztelés:
+  * Admin felhasználó töröl egy posztot
+* Várható eredmény:
+  * Admin törlése sikeres
+
+#### Biztonsági teszt
+
+* Jelszavak az adatbázisban hash-elve tárolódnak
+* Session kezelés ellenőrzése (bejárható oldalak, kijelentkezés)
+* Hozzáférés ellenőrzése admin funkciókhoz
+
+#### UI és reszponzivitás
+
+* Böngésző ablak átméretezése, mobil eszközön tesztelés.
+* Minden oldal és funkció használható legyen kisebb képernyőn is.
+
+#### Hiba- és kivételkezelés
+
+* Üres mezők, rossz adatbevitel, hibás poszt ID, offline állapot tesztelése.
+* Backend helyesen küldjön státuszkódokat és hibaüzeneteket.
+
 ## 11. Telepítési terv
 
 ## 12. Karbantartási terv

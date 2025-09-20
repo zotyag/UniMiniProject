@@ -189,6 +189,31 @@ A rendszer tehát hatékonyabbá, áttekinthetőbbé és élvezhetőbé teszi a 
 
 ## 6. Használati esetek
 
+Az alábbi use case-ek a jelen specifikáció funkcionális pontjaira illeszkednek, és a kulcsszereplők interakcióit írják le a rendszerrel.
+
+### User
+
+* Regisztráció: A felhasználói névvel és jelszóval regisztrál; a rendszer ellenőrzi az egyediséget és létrehozza az alap “user” szerepkört. Foglalt név esetén hiba és javaslat.
+
+* Bejelentkezés: Regisztrált felhasználó hitelesít. a rendszer session/token alapú munkamenetet hoz létre.
+
+* Vicc beküldése: Bejelentkezett felhasználó szöveges viccet küld be, a rendszer validál (nem üres, min. hossz), menti a szerzőt és időbélyeget, és publikálja.
+
+* Viccek böngészése: Bármely látogató listát nézhet, alapértelmezett rendezés időrend szerint, a felhasználó válthat népszerűség szerinti rendezésre, szűrhető saját posztokra is.
+
+* Értékelés (like/dislike): Bejelentkezett felhasználó egy viccet egyszer értékel, módosítható az értékelés, a rendszer frissíti az aggregált számlálókat és a népszerűségi mutatót.
+
+* Rendezés és interaktív frissítés: Felhasználó rendezést vált; a lista újratöltés nélküli frissítést kap.
+
+### Admin
+
+* Moderáció és törlés: Admin bármely viccet megtekinthet és törölhet megerősítéssel, jogosultság-ellenőrzés minden művelet előtt.
+
+### Hibakezelés és visszajelzés: 
+
+A rendszer konzisztens, azonnali visszajelzést ad sikeres/honos műveletekre; a hibaüzenetek segítik a korrekciót.
+
+
 ## 7. Megfeleltetés, hogyan fedik le a használati esetek a követelményeket
 
 Vegyük ezeket sorba:
@@ -217,3 +242,6 @@ Vegyük ezeket sorba:
 
 * reszponzív: a webalkalmazás felhasználói felület az adott képernyőhoz igazodik, hogy minden képernyőméreten jól nézzen ki.
 * mobilfirst: a felhasználói felület elsősorban úgy van kialakítva, hogy az elsősorban mobileszközökön jól nézzen ki.
+* Hitelesítés (Authentication): a felhasználó személyazonosságának ellenőrzése bejelentkezéskor, tipikusan jelszóval, a munkamenet során session vagy token tartja fenn az állapotot.
+* Munkamenet (Session/Token): az azonosított felhasználó állapotát fenntartó mechanizmus, sütivel tárolt session vagy aláírt token formájában valósulhat meg.
+* Süti: kliensoldali adat a munkamenet vagy beállítások fenntartására; használata átláthatósági és hozzájárulási követelményeket vonhat maga után.

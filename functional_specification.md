@@ -1,39 +1,63 @@
 # Funkcionális Specifikáció
 
-## 1. Jelenlegi helyzet
+## 1\. Jelenlegi helyzet
 
-## 2. Vágyálom rendszer
+Több viccoldal van, de ezek mind sablonosak, vagyis régi viccek tömkelege ,amelyeket különböző forrásokból gyűjtöttek össze, amit a felhasználók csak elolvasnak. Ennek hátránya, hogy a felhasználok megunják, kevés időt töltenek az oldalon, ami új felhasználók hiányát fogja eredményezni hosszú távon.
+
+Erre kellett egy megoldás, ami interaktívabbá teszi ezt a sablont és add esélyt a felhasználóknak. Ehhez a következő funkciók szükségesek:
+
+&nbsp;	 A felhasználóknak jogot kell adni saját viccek beküldésére
+
+&nbsp;	 Szűrni lehessen az adott vicceket
+
+&nbsp;	 Felhasználok kifejthetik véleményüket tetszik/nem tetszik (like-dislike) formában a viccekről
+
+&nbsp;	 A beküldött vicceket az adminok moderálni tudják
+
+
+
+## 2\. Vágyálom rendszer
 
 Az rendszer célja, hogy egy egyszerű, modern, mobilbarát weboldalt biztosítson a felhasználók számára, ahol vicceket oszthatnak meg egymással, valamint értékelhetik és böngészhetik mások bejegyzéseit.
 
 A rendszer az alábbi főbb funkciókat látja el:
 
 1. Felhasználói hitelesítés / jogosultságkezelés
-    * Felhasználók regisztrálhatnak (név + jelszó)
-    * Belépés után a felhasználók "user" vagy "admin" szerepkörrel rendelkeznek.
-    * Csak belépett felhasználók posztolhatnak, értékelhetnek.
+
+   * Felhasználók regisztrálhatnak (név + jelszó)
+   * Belépés után a felhasználók "user" vagy "admin" szerepkörrel rendelkeznek.
+   * Csak belépett felhasználók posztolhatnak, értékelhetnek.
+
 2. Vicckezelés
-    * Új vicc létrehozása (POST)
-    * Viccek listázása időrendben / népszerűség szerint (GET)
-    * Vicc értékelése (like/dislike) (POST/PUT)
-    * Vicc törlése csak admin által (DELETE)
+
+   * Új vicc létrehozása (POST)
+   * Viccek listázása időrendben / népszerűség szerint (GET)
+   * Vicc értékelése (like/dislike) (POST/PUT)
+   * Vicc törlése csak admin által (DELETE)
+
 3. Felhasználói műveletek
-    * Saját viccek azonosíthatók (külön szűrhetőek)
-    * Egy felhasználó egy viccet csak egyszer érétkelhet, de az értékelés módosítható
+
+   * Saját viccek azonosíthatók (külön szűrhetőek)
+   * Egy felhasználó egy viccet csak egyszer érétkelhet, de az értékelés módosítható
+
 4. Admin funkciók
-    * Bármely vicc törlése
-    * Jogosultság-ellenőrzés minden művelet előtt.
+
+   * Bármely vicc törlése
+   * Jogosultság-ellenőrzés minden művelet előtt.
+
 5. Felület
-    * Mobil-first, reszponzív dizájn
-    * Egyszerű UI a következő oldalakra:
-        * Főoldal (viccek listája)
-        * Belépés / regisztráció
-        * Vicc beküldése
-        * Rendezés kiválasztása
 
-## 3. Jelenlegi üzleti folyamatok
+   * Mobil-first, reszponzív dizájn
+   * Egyszerű UI a következő oldalakra:
 
-## 4. Igényelt üzleti folyamatok
+     * Főoldal (viccek listája)
+     * Belépés / regisztráció
+     * Vicc beküldése
+     * Rendezés kiválasztása
+
+## 3\. Jelenlegi üzleti folyamatok
+
+## 4\. Igényelt üzleti folyamatok
 
 Jelenleg a felhasználók számára nem áll rendelkezésre egy dedikált, könnyen használható weboldal, ahol egyszerűen, gyorsan és strukturáltan tudnának vicceket megosztani, illetve értékelni mások vicceit.
 
@@ -53,9 +77,9 @@ A tervezett rendszer célja, hogy ezt a széttagolt folyamatot leváltsa egy kö
 
 A rendszer tehát hatékonyabbá, áttekinthetőbbé és élvezhetőbé teszi a humoros tartalmak létrehozását, megosztását és fogyasztását egy közösségi alapon működő online felületen
 
-## 5. Követelménylista
+## 5\. Követelménylista
 
-### 1. Felhasználókezelés
+### 1\. Felhasználókezelés
 
 #### 1.1. Regisztráció
 
@@ -77,7 +101,7 @@ A rendszer tehát hatékonyabbá, áttekinthetőbbé és élvezhetőbé teszi a 
 * 1.3.2 A "user" szerepkörrel rendelkező felhasználó saját vicceket tehet közzé.
 * 1.3.3 Az "admin" szerepkörrel rendelkező felhasználó bármely viccet törölhet.
 
-### 2. Vicckezelés
+### 2\. Vicckezelés
 
 #### 2.1. Új vicc beküldése
 
@@ -91,6 +115,7 @@ A rendszer tehát hatékonyabbá, áttekinthetőbbé és élvezhetőbé teszi a 
 * 2.2.1 Minden látogató számára elérhető a viccek listája.
 * 2.2.2 A lista alapértelmezés szerint időrendben legyen rendezve (legújabb elöl).
 * 2.2.3 Minden vicchez meg kell jeleníteni:
+
   * Beküldő felhasználónevét
   * Beküldés időpontját
   * Like/dislike számot
@@ -98,8 +123,10 @@ A rendszer tehát hatékonyabbá, áttekinthetőbbé és élvezhetőbé teszi a 
 #### 2.3. Rendezés
 
 * 2.3.1 A felhasználó válthat rendezési módok között:
+
   * Népszerűség szerint (legtöbb pozitív értékeléssel rendelkező elöl)
   * Időrend szerint (legújabb elöl)
+
 * 2.3.2 A rendezés ne okozzon újratöltést (lehetőleg dinamikusan történjen)
 
 #### 2.4. Vicc törlése
@@ -107,7 +134,7 @@ A rendszer tehát hatékonyabbá, áttekinthetőbbé és élvezhetőbé teszi a 
 * 2.4.1 Az admin törölheti bármely felhasználó viccét.
 * 2.4.2 Törlés előtt megerősítő kérdést kell megjeleníteni.
 
-### 3. Értékelés
+### 3\. Értékelés
 
 #### 3.1. Like/dislike funkció
 
@@ -121,7 +148,7 @@ A rendszer tehát hatékonyabbá, áttekinthetőbbé és élvezhetőbé teszi a 
 * 3.2.1 A népszerűség számítása: like-ok száma minusz dislike-ok száma.
 * 3.2.2 A népszerűségi sorrend e szám alapján történjen csökkenő sorrendben.
 
-### 4. Felület és dizájn
+### 4\. Felület és dizájn
 
 #### 4.1. Mobil-first reszponzív dizájn
 
@@ -134,7 +161,7 @@ A rendszer tehát hatékonyabbá, áttekinthetőbbé és élvezhetőbé teszi a 
 * 4.2.1 A visszajelzések (pl. sikeres bejelentkezés, vicc törölve) jelenjenek meg azonnal.
 * 4.2.2 Hibás művelet esetén részletes hibaüzenetet kell adni.
 
-### 5. Biztonság és adatvédelem
+### 5\. Biztonság és adatvédelem
 
 #### 5.1. Adatkezelés
 
@@ -146,11 +173,33 @@ A rendszer tehát hatékonyabbá, áttekinthetőbbé és élvezhetőbé teszi a 
 * 5.2.1 Minden művelet előtt ellenőrizni kell a felhasználó szerepkörét.
 * 5.2.2 Az admin funkciók nem érhetőek el "user" szerepkörrel.
 
-## 6. Használati esetek
+## 6\. Használati esetek
 
-## 7. Megfeleltetés, hogyan fedik le a használati esetek a követelményeket
+## 7\. Megfeleltetés, hogyan fedik le a használati esetek a követelményeket
 
-## 8. Fogalomszótár
+Vegyük ezeket sorba:
+
+
+
+&nbsp;	Felhasználó kezelés: A felhasználók képesek regisztrálni az oldalra, egy beléptető rendszer segítségével, amit az adminok biztosítanak. Később a felhasználók képesek 	bejelentkezni az oldalra, a regisztrált adatok megadásával. 
+
+
+
+&nbsp;	Vicckezelés: A felhasználók tudnak vicceket beküldeni, de csak akkor ha be vannak jelentkezve, ha nincsenek akkor csak nézni tudják ezeket. A felhasználók neve megjelenik ezeknél 	a vicceknél. A vicceket tudják rendezni népszerűség, illetve időrend szerint. Az adminok képesek a vicceket törlöni, ha úgy gondolják nem oda való, vagy az oldal szabályzatának 	nem felelnek meg.	
+
+
+
+&nbsp;	Értékelés: A felhasználók csak akkor tudnak egy viccet like-olni vagy dislike-olni, ha be vannak jelentkezve. Ezt a felhasználók megváltoztathatják idővel, de csak egy like vagy 	dislikeot adhatnak. Minél több likeot adnak a felhasználók egy viccre annál népszerűbb lesz.
+
+
+
+&nbsp;	Felület és dizájn: Az adminoknak létre kell hozniuk egy olyan felületet, amit a felhasználók jól tudnak használni telefonon/tableten illetve számítógépen is. Azonnal kapni fognak 	a felhasználók értesítést, sikeres vagy sikertelen bejelentkezésről illetve arról is, ha egy viccük törölve lett.
+
+
+
+&nbsp;	Biztonság és adatvédelem: Az adminoknak biztosra kell menniük, hogy a felhasználók adatait biztonságos helyen tárolják amihez csak ők férhetnek hozzá. Valamint "userek" nem 	rendelkezhetnek az admin szerepkör funkcióival.
+
+## 8\. Fogalomszótár
 
 * reszponzív: a webalkalmazás felhasználói felület az adott képernyőhoz igazodik, hogy minden képernyőméreten jól nézzen ki.
 * mobilfirst: a felhasználói felület elsősorban úgy van kialakítva, hogy az elsősorban mobileszközökön jól nézzen ki.

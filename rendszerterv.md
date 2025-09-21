@@ -34,15 +34,15 @@ A rendszer célja, hogy interaktívabb vicc oldalt hozzon létre amit a felhaszn
 
 ### Rendszerhasználati esetek és lefutásaik:
   * Admin:
-   * Beléphet felhasználóként hogy megnéze az jól müködik-e
-   * Látja a felhasználók adatait
-   * Vicceket törölhet , de akár felhasználót is
-   * Hibákat tudd javitani ha esetleg van
+    * Beléphet felhasználóként hogy megnéze az jól müködik-e
+    * Látja a felhasználók adatait
+    * Vicceket törölhet , de akár felhasználót is
+    * Hibákat tudd javitani ha esetleg van
 
   * Felhasználó:
-   * Regisztrálni tudd majd ezekkel az adatokkal bejeletkezni
-   * Képes vicceket posztolni és ezeket törölni
-   * Más vicceket tudd értékelni
+    * Regisztrálni tudd majd ezekkel az adatokkal bejeletkezni
+    * Képes vicceket posztolni és ezeket törölni
+    * Más vicceket tudd értékelni
 
 ### Menü-hierarchiák:
   * Bejelentkezés:

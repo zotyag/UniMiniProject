@@ -23,7 +23,7 @@ A fő entitások: Felhasználó, Vicc, Értékelés, valamint szerepkörök User
 ```mermaid
 %%{init:{
   "flowchart":{
-    "subGraphTitleMargin": { "top": 10, "bottom": 30 },
+    "subGraphTitleMargin": { "top": 0, "bottom": 30 },
     "htmlLabels": true
   }
 }}%%

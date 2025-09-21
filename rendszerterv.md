@@ -21,6 +21,13 @@ A fő entitások: Felhasználó, Vicc, Értékelés, valamint szerepkörök User
 ## 7. Architekturális terv
 
 ```mermaid
+%%{init:{
+  "flowchart":{
+    "subGraphTitleMargin": { "top": 10, "bottom": 30 },
+    "htmlLabels": true
+  }
+}}%%
+
 flowchart TD
 
 %% Frontend

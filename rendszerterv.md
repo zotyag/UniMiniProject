@@ -28,6 +28,30 @@ A rendszer célja, hogy interaktívabb vicc oldalt hozzon létre amit a felhaszn
 
 ## 4. Funkcionális terv
 
+  ## Rendszerszereplők:
+  * Admin
+  * Felhasználó
+
+  ## Rendszerhasználati esetek és lefutásaik:
+  * Admin:
+   * Beléphet felhasználóként hogy megnéze az jól müködik-e
+   * Látja a felhasználók adatait
+   * Vicceket törölhet , de akár felhasználót is
+   * Hibákat tudd javitani ha esetleg van
+
+  * Felhasználó:
+   * Regisztrálni tudd majd ezekkel az adatokkal bejeletkezni
+   * Képes vicceket posztolni és ezeket törölni
+   * Más vicceket tudd értékelni
+
+  ## Menü-hierarchiák:
+  * Bejelentkezés:
+    * Bejelentkezés
+    * Regisztráció
+  * Főoldal:
+    * Vicc posztolás
+    * Kijelentkezés
+
 ## 5. Fizikai környezet
 
 A megoldás webes platformra készül, mobil-first megközelítéssel és reszponzív kialakítással, így okostelefonon, táblagépen és PC-n is egyaránt használható böngészőből. A backend Node.js környezetben fut, Railway felhőalapú hosztingon konténerizált vagy menedzselt szolgáltatásként, PostgreSQL adatbázissal.

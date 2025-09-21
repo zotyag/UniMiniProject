@@ -28,11 +28,11 @@ A rendszer célja, hogy interaktívabb vicc oldalt hozzon létre amit a felhaszn
 
 ## 4. Funkcionális terv
 
-  ## Rendszerszereplők:
+### Rendszerszereplők:
   * Admin
   * Felhasználó
 
-  ## Rendszerhasználati esetek és lefutásaik:
+### Rendszerhasználati esetek és lefutásaik:
   * Admin:
    * Beléphet felhasználóként hogy megnéze az jól müködik-e
    * Látja a felhasználók adatait
@@ -44,7 +44,7 @@ A rendszer célja, hogy interaktívabb vicc oldalt hozzon létre amit a felhaszn
    * Képes vicceket posztolni és ezeket törölni
    * Más vicceket tudd értékelni
 
-  ## Menü-hierarchiák:
+### Menü-hierarchiák:
   * Bejelentkezés:
     * Bejelentkezés
     * Regisztráció

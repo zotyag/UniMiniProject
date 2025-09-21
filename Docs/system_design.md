@@ -8,49 +8,52 @@ A rendszer célja, hogy interaktívabb vicc oldalt hozzon létre amit a felhaszn
 
 ![üzletiti folyamatok modellje](Images/KÉP.jpg)
 
-
 ## 3. Követelmények
 
-### Funkcionális követlemények:
+### Funkcionális követlemények
 
-  * Felhasználók adatainak tárolása
-  * Müködjön mobilokon illetve gépen is a weboldal
-  * A beküldöt viccek megjelenjenek az oldalon
+* Felhasználók adatainak tárolása
+* Müködjön mobilokon illetve gépen is a weboldal
+* A beküldöt viccek megjelenjenek az oldalon
 
-### Nem funkcionális követelmények:
+### Nem funkcionális követelmények
 
-  * A felhasználók ne jussanak hozzá mások bejeletkezési adatihoz.
+* A felhasználók ne jussanak hozzá mások bejeletkezési adatihoz.
 
-### Törvényi előírások, szabványok:
-  * W3C ajánlások használata
-  * WCAG 2.1 AA használata
-  * az OWASP irányelvek betartása
+### Törvényi előírások, szabványok
+
+* W3C ajánlások használata
+* WCAG 2.1 AA használata
+* az OWASP irányelvek betartása
 
 ## 4. Funkcionális terv
 
-### Rendszerszereplők:
-  * Admin
-  * Felhasználó
+### Rendszerszereplők
 
-### Rendszerhasználati esetek és lefutásaik:
-  * Admin:
-    * Beléphet felhasználóként hogy megnéze az jól müködik-e
-    * Látja a felhasználók adatait
-    * Vicceket törölhet , de akár felhasználót is
-    * Hibákat tudd javitani ha esetleg van
+* Admin
+* Felhasználó
 
-  * Felhasználó:
-    * Regisztrálni tudd majd ezekkel az adatokkal bejeletkezni
-    * Képes vicceket posztolni és ezeket törölni
-    * Más vicceket tudd értékelni
+### Rendszerhasználati esetek és lefutásaik
 
-### Menü-hierarchiák:
-  * Bejelentkezés:
-    * Bejelentkezés
-    * Regisztráció
-  * Főoldal:
-    * Vicc posztolás
-    * Kijelentkezés
+* Admin:
+  * Beléphet felhasználóként hogy megnéze az jól müködik-e
+  * Látja a felhasználók adatait
+  * Vicceket törölhet , de akár felhasználót is
+  * Hibákat tudd javitani ha esetleg van
+
+* Felhasználó:
+  * Regisztrálni tudd majd ezekkel az adatokkal bejeletkezni
+  * Képes vicceket posztolni és ezeket törölni
+  * Más vicceket tudd értékelni
+
+### Menü-hierarchiák
+
+* Bejelentkezés:
+  * Bejelentkezés
+  * Regisztráció
+* Főoldal:
+  * Vicc posztolás
+  * Kijelentkezés
 
 ## 5. Fizikai környezet
 
@@ -61,13 +64,11 @@ A hosztolás biztosítja a verziózott környezeteket és az automatikus deploy-
 
 A fő entitások: Felhasználó, Vicc, Értékelés, valamint szerepkörök User/Admin; a kapcsolatok a publikálás és értékelés folyamatait fedik le. A Felhasználó entitás egyedi felhasználónévvel és hash-elt jelszóval rendelkezik, és pontosan egy szerepkörrel (user vagy admin). Csak hitelesített felhasználó hozhat létre viccet vagy adhat értékelést. A Vicc entitást egy felhasználó hozza létre, tartalmazza a szöveget, időbélyeget és megjelenítéshez szükséges metaadatokat. Törlését admin végezheti moderálási szabályok alapján vagy a létrehozó. Az Értékelés entitás egy felhasználó és egy vicc között 1:1 kardinalitású (egy felhasználó egy adott viccet egyszer értékel, de módosíthatja), és a népszerűség a like-ok mínusz dislike-ok aggregációjával számítható.
 
-
 ## 7. Architekturális terv
-
 
 ![Architekturális terv Image](Images/architekturalis_terv.svg)
 
-### Backend (Node.js + Express):
+### Backend (Node.js + Express)
 
 * REST API végpontok a regisztrációhoz, bejelentkezéshez, viccek kezeléséhez és értékeléshez, az API JSON formátumban kommunikál a kliensekkel.
 
@@ -77,38 +78,36 @@ A fő entitások: Felhasználó, Vicc, Értékelés, valamint szerepkörök User
 
 * Biztonság: OWASP ajánlások szerinti bevált gyakorlatok, naplózás és hibakezelés részletes hibaüzenetekkel a kliens felé (érzékeny adatok nélkül).
 
-### Adatbázis szerver (PostgreSQL):
+### Adatbázis szerver (PostgreSQL)
 
 * Normalizált sémák a felhasználók, viccek és értékelések tárolására; indexek a listázási és rendezési lekérdezésekhez idő és népszerűség szerint.
 
 * Tranzakciók és egyedi kulcsok garantálják, hogy egy felhasználó egy viccet csak egyszer értékelhet, de az értékelés módosítható.
 
-### Web kliens (HTML, CSS, JS):
+### Web kliens (HTML, CSS, JS)
 
 * Mobil-first, reszponzív felület kezdőoldali vicclistával, bejelentkezés/regisztráció nézettel, vicc beküldő űrlappal és rendezésválasztóval, dinamikus frissítés oldalújratöltés nélkül.
 
 * Hozzáférés az API-hoz hitelesítés után session vagy token továbbításával; az azonnali visszajelzések biztosítják a felhasználói élményt (siker, hiba, törlés megerősítés).
 
-### Üzemeltetés (Railway):
+### Üzemeltetés (Railway)
 
 * Konténerizált Node.js szolgáltatás és menedzselt PostgreSQL, környezeti változókban tárolt titkok, automatikus build/deploy pipeline, mentési és helyreállítási eljárások dokumentálása.
 
 * Szabványok és megfelelés: W3C és WCAG 2.1 AA a frontendnél, privacy by design, security by design, licenc- és jogkezelés, közösségi irányelvek és incidenskezelés.
 
-### Példa REST API feladatleírás a szerepek és adatáramlás illusztrálására:
+### Példa REST API feladatleírás a szerepek és adatáramlás illusztrálására
 
-* POST /api/auth/register: felhasználónév, jelszó; egyediség-ellenőrzés, hash-elés, alap user szerepkör. 
+* POST /api/auth/register: felhasználónév, jelszó; egyediség-ellenőrzés, hash-elés, alap user szerepkör.
 * POST /api/auth/login: token vagy session létrehozása; hibakezelés sikertelen belépésnél.
 * GET /api/jokes: minden látogatónak elérhető lista; alapértelmezett rendezés: legújabb elöl; váltható népszerűség szerint.
 * POST /api/jokes: csak bejelentkezve; validáció: nem üres, minimális hossz; azonnali publikálás.
 * POST/PUT /api/jokes/:id/rate: like/dislike beállítása vagy módosítása; aggregált számlálók frissítése.
 * DELETE /api/jokes/:id: csak admin; törlés előtti megerősítés és jogosultság-ellenőrzés.
 
-
-
 ## 8. Adatbázis terv
 
-### Fő táblák és kapcsolatok:
+### Fő táblák és kapcsolatok
 
 * users
   * id (PK), username (unique), password_hash, role ENUM(‘user’, ‘admin’), created_at.
@@ -122,23 +121,25 @@ A fő entitások: Felhasználó, Vicc, Értékelés, valamint szerepkörök User
   * id (PK), user_id (FK → users.id), joke_id (FK → jokes.id), value SMALLINT (-1 vagy 1), created_at, updated_at.
   * Egyedi kulcs: unique(user_id, joke_id) biztosítja, hogy egy felhasználó egy viccet csak egyszer értékeljen, érték módosítható update-tel.
 
-
-### Számított népszerűség:
+### Számított népszerűség
 
 Népszerűség definíció: like-ok száma mínusz dislike-ok száma, lekérdezésben SUM(value) AS popularity a ratings táblán, csoportosítva joke_id szerint. Egyéb emotikonok nem számítanak bele a népszerűség számításába.
 
 Rendezés: ORDER BY popularity DESC vagy created_at DESC a kliens választása alapján, megfelelő indexeléssel és/vagy nézetekkel támogatva.
 
-### Integritási és biztonsági szabályok:
+### Integritási és biztonsági szabályok
+
 * ON DELETE CASCADE a ratings.user_id és ratings.joke_id kapcsolatokra, hogy törléskor a kapcsolódó értékelések is konzisztensen eltűnjenek.
 * Jogosultság-ellenőrzés minden író műveletnél (vicc létrehozás, értékelés, törlés), admin-only a törlés.
 * Adatvédelem és megfelelés: minimalizált személyes adatkezelés, átlátható sütikezelés, licenc- és felelősségi szabályok a felhasználói tartalomhoz, bejelentési-eltávolítási folyamat dokumentálása.
 
-### Megjegyzés a teljesítményhez és bővíthetőséghez:
+### Megjegyzés a teljesítményhez és bővíthetőséghez
+
 * A listázás és rendezés optimalizálására indexeket kell használni a népszerűség aggregátumhoz, időzített frissítéssel, alternatívaként íráskor fenntartott számlálók is alkalmazhatók tranzakciós védelemmel.
 * A kliens oldali élményhez a dinamikus frissítés minimalizálja az újratöltést, a hozzáférhetőség és szabványkövetés a W3C és WCAG 2.1 AA elvek mentén történik.
 
 ### DBML
+
 ```
 Table users {
 id integer [pk, increment]
@@ -189,9 +190,8 @@ long
 // A 'ratings' táblában egyedi kulcs, hogy egy felhasználó egy viccet csak egyszer értékelhessen
 // Index { user_id, joke_id } [unique]
 ```
+
 ![DBML Image](Images/database.svg)
-
-
 
 ## 9. Implementációs terv
 
@@ -207,7 +207,7 @@ A backend a Node.js környezetben futó Express szerver lesz, amely REST API-kat
 
 ### Adatbázis
 
-Az adatbázis PostgreSQL lesz, ahol két fő tábla található: 'users' a felhasználói adatokhoz és 'posts' a viccekhez. A backend ezen keresztül kommunikál az adatok beszúrására, lekérdezésére és frissítésére.
+Az adatbázis PostgreSQL lesz, ahol három tábla található: 'users' a felhasználói adatokhoz,'jokes' a viccekhez, és ratings a viccek értékeléséhez. A backend ezen keresztül kommunikál az adatok beszúrására, lekérdezésére és frissítésére.
 
 ### Integráció és működés
 

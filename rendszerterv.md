@@ -11,6 +11,21 @@ A rendszer célja, hogy interaktívabb vicc oldalt hozzon létre amit a felhaszn
 
 ## 3. Követelmények
 
+### Funkcionális követlemények:
+
+  * Felhasználók adatainak tárolása
+  * Müködjön mobilokon illetve gépen is a weboldal
+  * A beküldöt viccek megjelenjenek az oldalon
+
+### Nem funkcionális követelmények:
+
+  * A felhasználók ne jussanak hozzá mások bejeletkezési adatihoz.
+
+### Törvényi előírások, szabványok:
+  * W3C ajánlások használata
+  * WCAG 2.1 AA használata
+  * az OWASP irányelvek betartása
+
 ## 4. Funkcionális terv
 
 ## 5. Fizikai környezet

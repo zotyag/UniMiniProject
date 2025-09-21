@@ -64,68 +64,8 @@ A fő entitások: Felhasználó, Vicc, Értékelés, valamint szerepkörök User
 
 ## 7. Architekturális terv
 
-```mermaid
-%%{init:{
-  "flowchart":{
-    "subGraphTitleMargin": { "top": 0, "bottom": 30 },
-    "htmlLabels": true
-  }
-}}%%
 
-flowchart TD
-
-%% Frontend
-subgraph Client["Frontend (HTML, CSS, JS)"]
-  UI["Login / Register Screen"]
-  JokesUI["Joke List & Posting Form"]
-  RateUI["Rating Buttons: Like or Dislike"]
-end
-
-%% Backend API
-subgraph API["Backend (Node.js + Express REST API)"]
-  AuthAPI["Auth Endpoints: register, login"]
-  JokeAPI["Jokes Endpoints: list, create, delete"]
-  RateAPI["Ratings Endpoints: rate, update"]
-end
-
-%% Database
-subgraph DB["PostgreSQL (managed)"]
-  Users[("users table")]
-  Jokes[("jokes table")]
-  Ratings[("ratings table")]
-end
-
-%% Infrastructure
-subgraph Infra["Railway Cloud Hosting"]
-  Railway["Containers, managed DB, auto deploy"]
-  Git["Git versioning / CI-CD"]
-end
-
-%% Security
-subgraph Security["Security & Auth"]
-  OWASP["OWASP best practices"]
-  Hashing["Password hashing: bcrypt"]
-  Session["Session or JWT tokens"]
-end
-
-%% Connections
-UI -->|fetch| AuthAPI
-JokesUI -->|fetch| JokeAPI
-RateUI -->|fetch| RateAPI
-
-AuthAPI --> Users
-JokeAPI --> Jokes
-RateAPI --> Ratings
-
-Users --> Ratings
-Jokes --> Ratings
-
-Infra --> API
-Infra --> DB
-
-API --> Security
-Security --> Users
-```
+![Architekturális terv Image](.Markdown_Images/architekturalis_terv.svg)
 
 ### Backend (Node.js + Express):
 
@@ -249,7 +189,7 @@ long
 // A 'ratings' táblában egyedi kulcs, hogy egy felhasználó egy viccet csak egyszer értékelhessen
 // Index { user_id, joke_id } [unique]
 ```
-![DBML Image](.Markdown_Images/Untitled.svg)
+![DBML Image](.Markdown_Images/database.svg)
 
 
 

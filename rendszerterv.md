@@ -6,7 +6,7 @@ A rendszer célja, hogy interaktívabb vicc oldalt hozzon létre amit a felhaszn
 
 ## 2. Üzleti folyamatok modellje
 
-![üzleti folyamato modell](.Markdown_Images/Üzleti folyamatok modellje.jpg)
+![üzletiti folyamatok modellje](.Markdown_Images/KÉP.jpg)
 
 
 ## 3. Követelmények

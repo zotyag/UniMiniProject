@@ -2,6 +2,8 @@
 
 ## 1. A rendszer célja
 
+A rendszer célja, hogy interaktívabb vicc oldalt hozzon létre amit a felhasználók bővíthetnek, illetve ezeket értékelni tudják. Mivel egy viccportálról beszélünk a felülete egyszerű lesz. A portált webes felületen el lehet érni telefonról és számítógépről egyaránt. Az ismétlődés illetve a régi viccek elkerülése érdekében az adminok törölhetnek vicceket. Régi vicceket nem tilos küldeni csak nem ajánlott csak azzal megtölteni az oldalt.
+
 ## 2. Üzleti folyamatok modellje
 
 ## 3. Követelmények

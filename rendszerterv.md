@@ -6,6 +6,9 @@ A rendszer célja, hogy interaktívabb vicc oldalt hozzon létre amit a felhaszn
 
 ## 2. Üzleti folyamatok modellje
 
+![üzleti folyamato modell](.Markdown_Images/Üzleti folyamatok modellje.jpg)
+
+
 ## 3. Követelmények
 
 ## 4. Funkcionális terv

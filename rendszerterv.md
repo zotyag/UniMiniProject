@@ -17,7 +17,64 @@ A hosztolás biztosítja a verziózott környezeteket és az automatikus deploy-
 
 A fő entitások: Felhasználó, Vicc, Értékelés, valamint szerepkörök User/Admin; a kapcsolatok a publikálás és értékelés folyamatait fedik le. A Felhasználó entitás egyedi felhasználónévvel és hash-elt jelszóval rendelkezik, és pontosan egy szerepkörrel (user vagy admin). Csak hitelesített felhasználó hozhat létre viccet vagy adhat értékelést. A Vicc entitást egy felhasználó hozza létre, tartalmazza a szöveget, időbélyeget és megjelenítéshez szükséges metaadatokat. Törlését admin végezheti moderálási szabályok alapján vagy a létrehozó. Az Értékelés entitás egy felhasználó és egy vicc között 1:1 kardinalitású (egy felhasználó egy adott viccet egyszer értékel, de módosíthatja), és a népszerűség a like-ok mínusz dislike-ok aggregációjával számítható.
 
+
 ## 7. Architekturális terv
+
+```mermaid
+flowchart TD
+
+%% Frontend
+subgraph Client["Frontend (HTML, CSS, JS)"]
+  UI["Login / Register Screen"]
+  JokesUI["Joke List & Posting Form"]
+  RateUI["Rating Buttons: Like or Dislike"]
+end
+
+%% Backend API
+subgraph API["Backend (Node.js + Express REST API)"]
+  AuthAPI["Auth Endpoints: register, login"]
+  JokeAPI["Jokes Endpoints: list, create, delete"]
+  RateAPI["Ratings Endpoints: rate, update"]
+end
+
+%% Database
+subgraph DB["PostgreSQL (managed)"]
+  Users[("users table")]
+  Jokes[("jokes table")]
+  Ratings[("ratings table")]
+end
+
+%% Infrastructure
+subgraph Infra["Railway Cloud Hosting"]
+  Railway["Containers, managed DB, auto deploy"]
+  Git["Git versioning / CI-CD"]
+end
+
+%% Security
+subgraph Security["Security & Auth"]
+  OWASP["OWASP best practices"]
+  Hashing["Password hashing: bcrypt"]
+  Session["Session or JWT tokens"]
+end
+
+%% Connections
+UI -->|fetch| AuthAPI
+JokesUI -->|fetch| JokeAPI
+RateUI -->|fetch| RateAPI
+
+AuthAPI --> Users
+JokeAPI --> Jokes
+RateAPI --> Ratings
+
+Users --> Ratings
+Jokes --> Ratings
+
+Infra --> API
+Infra --> DB
+
+API --> Security
+Security --> Users
+```
 
 ### Backend (Node.js + Express):
 

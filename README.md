@@ -1,10 +1,8 @@
 # Joke Site
 
-
-
 A simple, mobile‑first web app where users can post text jokes, browse others posts, rate them with like/dislike, and admins can remove inappropriate content for moderation. The goal is an interactive, responsive joke platform with popularity‑based discovery and straightforward UX.
 
-## Tech stack
+## The stack
 
 Frontend: HTML, CSS, JavaScript with mobile‑first, responsive design and dynamic UI updates.<img src="Docs/Images/css.svg" alt="Diagram" width="40" height="30"><img src="Docs/Images/html.svg" alt="Diagram" width="40" height="30"><img src="Docs/Images/js.svg" alt="Diagram" width="40" height="30">
 
@@ -17,11 +15,11 @@ Hosting & ops: Railway for app and managed PostgreSQL with environment‑stored 
 
 ## Project documents
 
-Requirements Specification ([requirementsspecification.md](Docs/requirements_specification.md)).
+Requirements Specification ([requirements_specification.md](Docs/requirements_specification.md)).
 
 Functional Specification ([functional_specification.md](Docs/functional_specification.md)).
 
-System Design ([rendszerterv.md](Docs/system_design.md)).
+System Design ([system_design.md](Docs/system_design.md)).
 
 
 

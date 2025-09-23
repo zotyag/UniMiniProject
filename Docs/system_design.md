@@ -207,7 +207,7 @@ A backend a Node.js környezetben futó Express szerver lesz, amely REST API-kat
 
 ### Adatbázis
 
-Az adatbázis PostgreSQL lesz, ahol három tábla található: 'users' a felhasználói adatokhoz,'jokes' a viccekhez, és ratings a viccek értékeléséhez. A backend ezen keresztül kommunikál az adatok beszúrására, lekérdezésére és frissítésére.
+Az adatbázis PostgreSQL lesz, ahol három tábla található: 'users' a felhasználói adatokhoz, 'jokes' a viccekhez, és ratings a viccek értékeléséhez. A backend ezen keresztül kommunikál az adatok beszúrására, lekérdezésére és frissítésére.
 
 ### Integráció és működés
 

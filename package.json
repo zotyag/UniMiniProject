@@ -1,0 +1,29 @@
+{
+  "name": "Joke Site",
+  "version": "1.0.0",
+  "description": "A simple, mobile‑first web app where users can post text jokes, browse others posts, rate them with like/dislike, and admins can remove inappropriate content for moderation. The goal is an interactive, responsive joke platform with popularity‑based discovery and straightforward UX.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zotyag/UniMiniProject.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zotyag/UniMiniProject/issues"
+  },
+  "homepage": "https://github.com/zotyag/UniMiniProject#readme",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0",
+    "express-session": "^1.18.2",
+    "pg": "^8.16.3"
+  }
+}

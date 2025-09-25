@@ -79,10 +79,10 @@
                 <button type="button" onclick="logout()">Logout</button>
             </div>
         </form>
-        <form onsubmit="" method="post" class="post-form form">
+        <form onsubmit="createPost(event)" method="post" class="post-form form">
             <h2>New post</h2>
             <hr>
-            <textarea rows="5" class="post-msg-box"></textarea>
+            <textarea rows="5" id="post-msg-box" class="post-msg-box"></textarea>
             <button type="submit">Submit</button>
         </form>
     </main>
@@ -90,5 +90,10 @@
 
 <script src="js/register.js"></script>
 <script src="js/login.js"></script>
+<script src="js/new_post.js"></script>
+
+
+
+
 
 </html>

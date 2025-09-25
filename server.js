@@ -62,8 +62,7 @@ app.post('/api/login', async (req, res) => {
 	// Compare passwords and store their data in session if they match
 	const user = result.rows[0];
 	if (await bcrypt.compare(passwd, user.password_hash)) {
-		req.session.user = { is: user.id, role: user.role, uname: user.username };
-		console.log(req.session.user);
+		req.session.user = { id: user.id, role: user.role, uname: user.username };
 		res.json({ success: true, user: req.session.user });
 	} else {
 		res.status(400).json({ success: false, message: "Username and password doesn't match" });
@@ -72,8 +71,23 @@ app.post('/api/login', async (req, res) => {
 
 // Logout - user data from session
 app.post('/api/logout', async (req, res) => {
-	console.log(req.session.user);
 	req.session.destroy(() => res.json({ success: true }));
+});
+
+// New post
+app.post('/api/new_post', async (req, res) => {
+	if (!req.session.user)
+		return res
+			.status(401)
+			.json({ success: false, message: 'You have to be logged in to make new posts!' });
+
+	const { content, length } = req.body;
+	await pool.query('INSERT INTO jokes (author_id, content, length) VALUES ($1, $2, $3)', [
+		req.session.user.id,
+		content,
+		length,
+	]);
+	res.json({ success: true });
 });
 
 app.listen(PORT, () => {

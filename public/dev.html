@@ -5,16 +5,90 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        h1,
+        h2,
+        h3 {
+            margin: 0;
+            padding: 0;
+        }
+
+        main {
+            width: 70%;
+            margin: auto;
+            margin-block: 1.35rem;
+
+            display: flex;
+            flex-direction: column;
+            gap: 1.15rem;
+        }
+
+        .form {
+            border: 1px solid black;
+            display: flex;
+            flex-direction: column;
+            padding: .55rem;
+            gap: .35rem;
+        }
+
+        .form hr {
+            width: 100%;
+            margin-top: 0;
+        }
+
+        .form button {
+            font-size: 1.15em;
+            font-weight: 600;
+            padding: .15em;
+            width: 100%;
+        }
+
+        .form button:hover {
+            cursor: pointer;
+        }
+
+        .btn-holder {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .post-msg-box {
+            resize: none;
+        }
+    </style>
 </head>
 
 <body>
-    <form onsubmit="registerNewUser(event)" method="post">
-        <input type="text" id="username" placeholder="Username">
-        <input type="password" id="password" placeholder="Password">
-        <button type="submit">Register</button>
-    </form>
+    <main>
+        <form onsubmit="registerNewUser(event)" method="post" class="register-form form">
+            <h2>New user</h2>
+            <hr>
+            <input type="text" id="username" placeholder="Username">
+            <input type="password" id="password" placeholder="Password">
+            <button type="submit">Register</button>
+        </form>
+        <form onsubmit="login(event)" method="post" class="login-form form">
+            <h2>Login</h2>
+            <hr>
+            <input type="text" id="login-username" placeholder="Username">
+            <input type="password" id="login-password" placeholder="Password">
+            <div class="btn-holder">
+                <button type="submit">Login</button>
+                <button type="button" onclick="logout()">Logout</button>
+            </div>
+        </form>
+        <form onsubmit="" method="post" class="post-form form">
+            <h2>New post</h2>
+            <hr>
+            <textarea rows="5" class="post-msg-box"></textarea>
+            <button type="submit">Submit</button>
+        </form>
+    </main>
 </body>
 
 <script src="js/register.js"></script>
+<script src="js/login.js"></script>
 
 </html>

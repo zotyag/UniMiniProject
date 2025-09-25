@@ -1,6 +1,7 @@
 require('dotenv').config();
 
 const express = require('express');
+const session = require('express-session');
 const cors = require('cors');
 const bcrypt = require('bcrypt');
 
@@ -13,6 +14,7 @@ const PORT = process.env.PORT;
 app.use(cors());
 app.use(express.json());
 app.use(express.static('public'));
+app.use(session({ secret: 'secret', resave: false, saveUninitialized: false }));
 
 async function isUsernameTaken(uname) {
 	try {
@@ -46,6 +48,32 @@ app.post('/api/register', async (req, res) => {
 	} catch (err) {
 		res.status(400).json({ success: false, message: err.message });
 	}
+});
+
+// Login with an existing user
+app.post('/api/login', async (req, res) => {
+	const { uname, passwd } = req.body;
+
+	// Query user and check if it exist
+	const result = await pool.query('SELECT * FROM users WHERE username = $1', [uname]);
+	if (result.rows.length === 0)
+		return res.status(400).json({ success: false, message: "User doesn't exist" });
+
+	// Compare passwords and store their data in session if they match
+	const user = result.rows[0];
+	if (await bcrypt.compare(passwd, user.password_hash)) {
+		req.session.user = { is: user.id, role: user.role, uname: user.username };
+		console.log(req.session.user);
+		res.json({ success: true, user: req.session.user });
+	} else {
+		res.status(400).json({ success: false, message: "Username and password doesn't match" });
+	}
+});
+
+// Logout - user data from session
+app.post('/api/logout', async (req, res) => {
+	console.log(req.session.user);
+	req.session.destroy(() => res.json({ success: true }));
 });
 
 app.listen(PORT, () => {

@@ -8,7 +8,7 @@ const { pool } = require('./db');
 const { error } = require('console');
 
 const app = express();
-const PORT = process.env.PORT;
+const PORT = 3000;
 
 app.use(cors());
 app.use(express.json());

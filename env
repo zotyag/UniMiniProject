@@ -1,0 +1,2 @@
+DATABASE_URL = "postgresql://postgres:wCndzignHptOOMmWkAnIMkxxTNBOkQBw@yamabiko.proxy.rlwy.net:11568/railway"
+PORT = 3000

@@ -90,6 +90,35 @@ app.post('/api/new_post', async (req, res) => {
 	res.json({ success: true });
 });
 
+// Get posts from database
+app.get('/api/posts', async (req, res) => {
+	const sort = req.query.sort;
+	var orderBy = '';
+	if (sort === 'popularity') {
+		orderBy = 'popularity DESC, j.created_at DESC;';
+	} else {
+		orderBy = 'j.created_at DESC';
+	}
+
+	const result = await pool.query(`
+		SELECT
+		  j.id,
+		  j.content,
+		  u.username AS author,
+		  j.length,
+		  j.popularity,
+		  j.created_at
+		FROM jokes j
+		  JOIN users u ON j.author_id = u.id
+		GROUP BY
+		  j.id, u.username, j.content, j.length, j.created_at
+		ORDER BY
+		  ${orderBy}
+	`);
+
+	res.json(result.rows);
+});
+
 app.listen(PORT, () => {
 	console.log(`Server listening on port ${PORT}`);
 });

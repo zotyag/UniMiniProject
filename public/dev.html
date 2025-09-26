@@ -37,7 +37,7 @@
         }
 
         .form button {
-            font-size: 1.15em;
+            font-size: 1.15rem;
             font-weight: 600;
             padding: .15em;
             width: 100%;
@@ -56,6 +56,80 @@
 
         .post-msg-box {
             resize: none;
+        }
+
+        .header {
+            display: flex;
+            flex-direction: row;
+            gap: 1rem;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header>button {
+            width: auto;
+            padding-inline: 3rem;
+            font-size: 1rem;
+        }
+
+        /* ========== POST ========== */
+
+        #posts {
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+            margin: 0 .55rem;
+            box-shadow: 4px 3px 8px gray;
+        }
+
+        .post {
+            padding: 0.35rem;
+            border: 1px solid black;
+        }
+
+        .post>.header {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        .joke {
+            padding: 0.35rem 0.15rem;
+            display: flex;
+            flex-direction: row;
+            gap: 0;
+        }
+
+        .rating {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            margin-right: 0.25rem;
+            gap: .25rem;
+            height: fit-content;
+        }
+
+        .rating>* {
+            width: 100%;
+            text-align: center;
+        }
+
+        .joke>.joke-text {
+            margin: 0;
+            padding: 0.45em;
+            min-height: 5em;
+            width: 100%;
+            border: 1px solid black;
+        }
+
+        .author {
+            display: flex;
+            flex-direction: row;
+            gap: 0.2em;
+        }
+
+        .author-name::after {
+            content: ' -';
         }
     </style>
 </head>
@@ -85,13 +159,141 @@
             <textarea rows="5" id="post-msg-box" class="post-msg-box"></textarea>
             <button type="submit">Submit</button>
         </form>
+        <div class="form">
+            <div class="header">
+                <h2>Posts</h2>
+                <button onclick="loadPostsIntoTable()">Load</button>
+            </div>
+            <hr>
+            <div id="posts">
+
+            </div>
+        </div>
     </main>
 </body>
 
 <script src="js/register.js"></script>
 <script src="js/login.js"></script>
 <script src="js/new_post.js"></script>
+<script src="js/loadPosts.js"></script>
 
+<script>
+    async function loadPostsIntoTable() {
+        // var posts = await loadPosts('popularity');
+        var posts = await loadPosts('date');
+        console.log(posts);
+
+        posts.forEach(user => {
+            add(user.author, user.created_at, user.content, user.popularity)
+        });
+
+
+
+    }
+
+    async function add(name, date, text, rating) {
+        // 1. Megkeressük a fő konténert
+        const postsContainer = document.getElementById('posts');
+
+
+        // 2. Létrehozzuk a <div class="post"> elemet
+        const postDiv = document.createElement('div');
+        postDiv.classList.add('post');
+
+        // 3. Létrehozzuk a <div class="header"> elemet
+        const headerDiv = document.createElement('div');
+        headerDiv.classList.add('header');
+
+        // 4. Létrehozzuk a <div class="author"> elemet
+        const authorDiv = document.createElement('div');
+        authorDiv.classList.add('author');
+
+        // 5. Létrehozzuk a <div class="author-name"> elemet
+        const authorNameDiv = document.createElement('div');
+        authorNameDiv.classList.add('author-name');
+        authorNameDiv.textContent = name; // Alapértelmezett érték beállítása
+
+        // 6. Létrehozzuk a <div class="time-of-post"> elemet
+        const timeOfPostDiv = document.createElement('div');
+        timeOfPostDiv.classList.add('time-of-post');
+
+        const dateObj = new Date(date);
+        const year = dateObj.getUTCFullYear();
+        const month = dateObj.getUTCMonth() + 1;
+        const day = dateObj.getUTCDay();
+        const hours = dateObj.getUTCHours();
+        const min = dateObj.getUTCMinutes();
+        const sec = dateObj.getUTCSeconds();
+        const pad = (num) => String(num).padStart(2, '0');
+
+        const formattedDate = `${year}-${pad(month)}-${pad(day)} ` +
+            `${pad(hours)}:${pad(min)}${pad(sec)}`
+
+        timeOfPostDiv.textContent = formattedDate; // Alapértelmezett érték beállítása
+
+        // 7. Létrehozzuk a <button class="btn-delete"> elemet
+        const deleteButton = document.createElement('button');
+        deleteButton.classList.add('btn-delete');
+        deleteButton.textContent = 'delete';
+
+        // 8. Létrehozzuk a <div class="joke"> elemet
+        const jokeDiv = document.createElement('div');
+        jokeDiv.classList.add('joke');
+
+        // 9. Létrehozzuk a <div class="rating"> elemet
+        const ratingDiv = document.createElement('div');
+        ratingDiv.classList.add('rating');
+
+        // 10. Létrehozzuk a lájk gombot (fel)
+        const upButton = document.createElement('button');
+        upButton.innerHTML = '&#x2B9D;'; // Fel nyíl
+
+        // 11. Létrehozzuk a <div class="rating-value"> elemet
+        const ratingValueDiv = document.createElement('div');
+        ratingValueDiv.classList.add('rating-value');
+        ratingValueDiv.textContent = rating; // Alapértelmezett érték beállítása
+
+        // 12. Létrehozzuk a diszlájk gombot (le)
+        const downButton = document.createElement('button');
+        downButton.innerHTML = '&#x2B9F;'; // Le nyíl
+
+        // 13. Létrehozzuk a <textarea> elemet
+        // const jokeTextarea = document.createElement('textarea');
+        // jokeTextarea.textContent = text; // Alapértelmezett érték beállítása
+
+        const jokeTextarea = document.createElement('p');
+        jokeTextarea.classList.add('joke-text')
+        jokeTextarea.textContent = text;
+
+
+
+        // --- ÖSSZEFŰZÉS (Hierarchia felépítése) ---
+
+        // author-name és time-of-post az author-ba
+        authorDiv.appendChild(authorNameDiv);
+        authorDiv.appendChild(timeOfPostDiv);
+
+        // author és btn-delete a header-be
+        headerDiv.appendChild(authorDiv);
+        headerDiv.appendChild(deleteButton);
+
+        // lájk gomb, rating-value, diszlájk gomb a rating-be
+        ratingDiv.appendChild(upButton);
+        ratingDiv.appendChild(ratingValueDiv);
+        ratingDiv.appendChild(downButton);
+
+        // rating és textarea a joke-ba
+        jokeDiv.appendChild(ratingDiv);
+        jokeDiv.appendChild(jokeTextarea);
+
+        // header és joke a post-ba
+        postDiv.appendChild(headerDiv);
+        postDiv.appendChild(jokeDiv);
+
+        // A kész post a posts konténerbe
+        postsContainer.appendChild(postDiv);
+    }
+</script>
 
 
 

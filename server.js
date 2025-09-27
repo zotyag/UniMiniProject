@@ -196,6 +196,10 @@ app.post('/api/changeRole', async (req, res) => {
 	}
 });
 
+app.get('/api/currentUserData', async (req, res) => {
+	res.json(req.session.user);
+});
+
 app.listen(PORT, () => {
 	console.log(`Server listening on port ${PORT}`);
 });

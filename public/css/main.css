@@ -71,6 +71,7 @@ h3 {
 	text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
 }
 
+
 #navbar .nav-item {
 	background-color: cornflowerblue;
 	padding: 0.25rem 0;
@@ -120,10 +121,17 @@ h3 {
 
 #filter {
 	display: flex;
+	align-items: center;
 	flex-direction: row;
 	justify-content: start;
 	align-items: center;
 	gap: 0.25rem;
+	margin-bottom: 16px;
+}
+
+#filter button.active {
+  background: rgb(233, 187, 60);
+  border-color: #999;
 }
 
 #new_post {

@@ -21,7 +21,7 @@ h3 {
 /* ============================================================================== */
 
 .banner-img {
-	background-image: url(./bg.jpg);
+	background-image: url(../bg.jpg);
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;

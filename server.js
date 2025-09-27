@@ -182,6 +182,20 @@ app.post('/api/rate', async (req, res) => {
 	}
 });
 
+// Change user role
+app.post('/api/changeRole', async (req, res) => {
+	try {
+		const { user_id, new_role } = req.body;
+
+		await pool.query('UPDATE users SET role = $1 WHERE id = $2', [new_role, user_id]);
+
+		res.json({ success: true, message: "User's role has been modified" });
+	} catch (err) {
+		console.error('Error during changing roles: ', err);
+		res.status(500).json({ success: false, message: 'Internal server error' });
+	}
+});
+
 app.listen(PORT, () => {
 	console.log(`Server listening on port ${PORT}`);
 });

@@ -136,6 +136,14 @@
 
 <body>
     <main>
+        <div class="form">
+            <h2 style="text-align: center; font-size: 1.4em;">Click on one of the buttons to change role</h2>
+            <hr>
+            <div class="btn-holder">
+                <button onclick="changeRole(1, 'user')">USER</button>
+                <button onclick="changeRole(1, 'admin')">ADMIN</button>
+            </div>
+        </div>
         <form onsubmit="registerNewUser(event)" method="post" class="register-form form">
             <h2>New user</h2>
             <hr>
@@ -178,6 +186,7 @@
 <script src="js/loadPosts.js"></script>
 <script src="js/deletePost.js"></script>
 <script src="js/ratePost.js"></script>
+<script src="js/changeRole.js"></script>
 
 <script>
     async function loadPostsIntoTable() {

@@ -4,11 +4,153 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Test view</title>
+    <link rel="stylesheet" href="main.css">
 </head>
 
 <body>
-    <h1>Főoldal</h1>
+
+    <div class="banner">
+
+        <div class="banner-img"></div>
+
+        <h1 class="title">Viccelek</h1>
+
+        <div id="navbar">
+            <div class="user-info">
+                <div>Username: <span id="logged-in-user">TesztElek13</span></div>
+                <button id="btn-logout">Logout</button>
+                <button id="menu-toggle-btn" onclick="myFunc()">☰</button>
+            </div>
+
+            <div id="nav-menu">
+                <div class="nav-item">
+                    <div class="nav-item-text">Home</div>
+                </div>
+                <div class="nav-item">
+                    <div class="nav-item-text">About</div>
+                </div>
+                <div class="nav-item">
+                    <div class="nav-item-text">Rules</div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+    <main>
+        <div id="posts">
+            <div id="filter">
+                <Label>Sort:</Label>
+                <button>Time</button>
+                <button>Popularity</button>
+                <button id="new_post">New post</button>
+            </div>
+
+
+            <div class="post">
+                <div class="header">
+                    <div class="author">
+                        <div class="author-name">John</div>
+                        <div class="time-of-post">2020/04/12</div>
+                    </div>
+                    <button class="btn-delete">delete</button>
+                </div>
+                <div class="joke">
+                    <div class="rating">
+                        <button>&#x2B9D;</button>
+                        <div class="rating-value">0</div>
+                        <button>&#x2B9F;</button>
+                    </div>
+                    <textarea>This is a joke!</textarea>
+                </div>
+            </div>
+            <div class="post">
+                <div class="header">
+                    <div class="author">
+                        <div class="author-name">John</div>
+                        <div class="time-of-post">2020/04/12</div>
+                    </div>
+                    <button class="btn-delete">delete</button>
+                </div>
+                <div class="joke">
+                    <div class="rating">
+                        <button>&#x2B9D;</button>
+                        <div class="rating-value">0</div>
+                        <button>&#x2B9F;</button>
+                    </div>
+                    <textarea>This is a joke!</textarea>
+                </div>
+            </div>
+            <div class="post">
+                <div class="header">
+                    <div class="author">
+                        <div class="author-name">John</div>
+                        <div class="time-of-post">2020/04/12</div>
+                    </div>
+                    <button class="btn-delete">delete</button>
+                </div>
+                <div class="joke">
+                    <div class="rating">
+                        <button>&#x2B9D;</button>
+                        <div class="rating-value">0</div>
+                        <button>&#x2B9F;</button>
+                    </div>
+                    <textarea>This is a joke!</textarea>
+                </div>
+            </div>
+            <div class="post">
+                <div class="header">
+                    <div class="author">
+                        <div class="author-name">John</div>
+                        <div class="time-of-post">2020/04/12</div>
+                    </div>
+                    <button class="btn-delete">delete</button>
+                </div>
+                <div class="joke">
+                    <div class="rating">
+                        <button>&#x2B9D;</button>
+                        <div class="rating-value">0</div>
+                        <button>&#x2B9F;</button>
+                    </div>
+                    <textarea>This is a joke!</textarea>
+                </div>
+            </div>
+            <div class="post">
+                <div class="header">
+                    <div class="author">
+                        <div class="author-name">John</div>
+                        <div class="time-of-post">2020/04/12</div>
+                    </div>
+                    <button class="btn-delete">delete</button>
+                </div>
+                <div class="joke">
+                    <div class="rating">
+                        <button>&#x2B9D;</button>
+                        <div class="rating-value">0</div>
+                        <button>&#x2B9F;</button>
+                    </div>
+                    <textarea>This is a joke!</textarea>
+                </div>
+            </div>
+
+
+        </div>
+    </main>
+
+
+    <script>
+        function myFunc() {
+            var a = document.getElementById('nav-menu')
+
+            if (a.style.display == 'none')
+                a.style.display = "block";
+            else
+                a.style.display = "none";
+
+        }
+    </script>
 </body>
 
 </html>

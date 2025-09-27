@@ -91,113 +91,54 @@ app.post('/api/new_post', async (req, res) => {
 	res.json({ success: true });
 });
 
-// Get posts from database
+
+// Gives back jokes in pages
 app.get('/api/posts', async (req, res) => {
-	const sort = req.query.sort;
-	var orderBy = '';
-	if (sort === 'popularity') {
-		orderBy = 'popularity DESC, j.created_at DESC;';
-	} else {
-		orderBy = 'j.created_at DESC';
-	}
+  try {
+    const sortParam = req.query.sort === 'popularity'
+      ? 'popularity DESC, j.created_at DESC'
+      : 'j.created_at DESC';
 
-	const result = await pool.query(`
-		SELECT
-		  j.id,
-		  j.content,
-		  u.username AS author,
-		  j.length,
-		  j.popularity,
-		  j.created_at
-		FROM jokes j
-		  JOIN users u ON j.author_id = u.id
-		GROUP BY
-		  j.id, u.username, j.content, j.length, j.created_at
-		HAVING j.deleted_at IS NULL
-		ORDER BY
-		  ${orderBy}
-	`);
+    const page = Math.max(parseInt(req.query.page) || 0, 0);
+    const limit = Math.min(Math.max(parseInt(req.query.limit) || 100, 1), 1000);
+    const offset = page * limit;
 
-	res.json(result.rows);
+    const countResult = await pool.query(`
+      SELECT COUNT(*) AS total
+      FROM jokes j
+      WHERE j.deleted_at IS NULL
+    `);
+    const total = parseInt(countResult.rows[0].total, 10);
+
+    const result = await pool.query(`
+      SELECT
+        j.id,
+        j.content,
+        u.username AS author,
+        j.length,
+        j.popularity,
+        j.created_at
+      FROM jokes j
+      JOIN users u ON j.author_id = u.id
+      WHERE j.deleted_at IS NULL
+      ORDER BY ${sortParam}
+      LIMIT $1 OFFSET $2
+    `, [limit, offset]);
+
+    res.json({
+      posts: result.rows,
+      hasMore: (offset + result.rows.length) < total,
+      total,
+      currentPage: page,
+      totalPages: Math.ceil(total / limit),
+      limit
+    });
+  } catch (err) {
+    console.error('Error fetching posts:', err);
+    res.status(500).json({ success: false, message: 'Internal server error' });
+  }
 });
 
-// Get posts from database with pagination support
-app.get('/api/posts', async (req, res) => {
-    try {
-        const sort = req.query.sort;
-        const page = parseInt(req.query.page) || 0;
-        const limit = parseInt(req.query.limit) || 100;
-        
-        // Validate pagination parameters
-        if (page < 0) {
-            return res.status(400).json({ 
-                success: false, 
-                message: 'Page number must be non-negative' 
-            });
-        }
-        
-        if (limit <= 0 || limit > 1000) {
-            return res.status(400).json({ 
-                success: false, 
-                message: 'Limit must be between 1 and 1000' 
-            });
-        }
-        
-        // Calculate offset
-        const offset = page * limit;
-        
-        // Determine order clause
-        let orderBy = '';
-        if (sort === 'popularity') {
-            orderBy = 'popularity DESC, j.created_at DESC';
-        } else {
-            orderBy = 'j.created_at DESC';
-        }
-
-        // Get total count for pagination metadata
-        const countResult = await pool.query(`
-            SELECT COUNT(*) as total
-            FROM jokes j
-            WHERE j.deleted_at IS NULL
-        `);
-        const totalPosts = parseInt(countResult.rows[0].total);
-
-        // Get paginated posts
-        const result = await pool.query(`
-            SELECT
-              j.id,
-              j.content,
-              u.username AS author,
-              j.length,
-              j.popularity,
-              j.created_at
-            FROM jokes j
-              JOIN users u ON j.author_id = u.id
-            WHERE j.deleted_at IS NULL
-            ORDER BY ${orderBy}
-            LIMIT $1 OFFSET $2
-        `, [limit, offset]);
-
-        // Calculate pagination metadata
-        const hasMore = (offset + result.rows.length) < totalPosts;
-        const totalPages = Math.ceil(totalPosts / limit);
-
-        res.json({
-            posts: result.rows,
-            hasMore: hasMore,
-            total: totalPosts,
-            currentPage: page,
-            totalPages: totalPages,
-            limit: limit
-        });
-    } catch (err) {
-        console.error('Error fetching posts:', err);
-        res.status(500).json({ 
-            success: false, 
-            message: 'Internal server error' 
-        });
-    }
-});
 
 // Delete post
 app.delete('/api/posts/:id', async (req, res) => {

@@ -177,6 +177,7 @@
 <script src="js/new_post.js"></script>
 <script src="js/loadPosts.js"></script>
 <script src="js/deletePost.js"></script>
+<script src="js/ratePost.js"></script>
 
 <script>
     async function loadPostsIntoTable() {
@@ -251,6 +252,9 @@
         // 10. Létrehozzuk a lájk gombot (fel)
         const upButton = document.createElement('button');
         upButton.innerHTML = '&#x2B9D;'; // Fel nyíl
+        upButton.addEventListener('click', () => {
+            ratePost(jokeId, 1);
+        })
 
         // 11. Létrehozzuk a <div class="rating-value"> elemet
         const ratingValueDiv = document.createElement('div');
@@ -260,6 +264,9 @@
         // 12. Létrehozzuk a diszlájk gombot (le)
         const downButton = document.createElement('button');
         downButton.innerHTML = '&#x2B9F;'; // Le nyíl
+        downButton.addEventListener('click', () => {
+            ratePost(jokeId, -1);
+        })
 
         // 13. Létrehozzuk a <textarea> elemet
         // const jokeTextarea = document.createElement('textarea');

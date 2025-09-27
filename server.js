@@ -7,6 +7,7 @@ const bcrypt = require('bcrypt');
 
 const { pool } = require('./db');
 const { error } = require('console');
+const { Query } = require('pg');
 
 const app = express();
 const PORT = 3000;
@@ -128,6 +129,55 @@ app.delete('/api/posts/:id', async (req, res) => {
 		await pool.query('UPDATE jokes SET deleted_at = NOW() WHERE id =  $1', [id]);
 		res.json({ success: true, message: 'Post successfully deleted' });
 	} catch (err) {
+		res.status(500).json({ success: false, message: 'Internal server error' });
+	}
+});
+
+// Rating
+app.post('/api/rate', async (req, res) => {
+	const { jokeId, value } = req.body;
+
+	try {
+		const existingRating = await pool.query(
+			'SELECT value FROM ratings WHERE user_id = $1 AND joke_id = $2',
+			[req.session.user.id, jokeId],
+		);
+
+		// Ha a user még nem értékelt
+		if (existingRating.rows.length === 0) {
+			await pool.query(
+				`INSERT INTO ratings (user_id, joke_id, value)
+				VALUES ($1, $2, $3)`,
+				[req.session.user.id, jokeId, value],
+			);
+
+			await pool.query('UPDATE jokes SET popularity = popularity + $1 WHERE id = $2', [
+				value,
+				jokeId,
+			]);
+
+			res.json({ success: true, message: 'Rating added.' });
+		} else {
+			// Ha már értékelt
+			const oldValue = existingRating.rows[0].value;
+			const diff = value - oldValue;
+
+			await pool.query(
+				`UPDATE ratings
+				SET value=$3
+				WHERE user_id = $1 AND joke_id = $2`,
+				[req.session.user.id, jokeId, value],
+			);
+
+			await pool.query('UPDATE jokes SET popularity = popularity + $1 WHERE id = $2', [
+				diff,
+				jokeId,
+			]);
+
+			res.json({ success: true, message: 'Rating added.' });
+		}
+	} catch (err) {
+		console.error('Error during rating: ', err);
 		res.status(500).json({ success: false, message: 'Internal server error' });
 	}
 });

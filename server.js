@@ -10,7 +10,7 @@ const { error } = require('console');
 const { Query } = require('pg');
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT;
 
 app.use(cors());
 app.use(express.json());
@@ -119,6 +119,84 @@ app.get('/api/posts', async (req, res) => {
 	`);
 
 	res.json(result.rows);
+});
+
+// Get posts from database with pagination support
+app.get('/api/posts', async (req, res) => {
+    try {
+        const sort = req.query.sort;
+        const page = parseInt(req.query.page) || 0;
+        const limit = parseInt(req.query.limit) || 100;
+        
+        // Validate pagination parameters
+        if (page < 0) {
+            return res.status(400).json({ 
+                success: false, 
+                message: 'Page number must be non-negative' 
+            });
+        }
+        
+        if (limit <= 0 || limit > 1000) {
+            return res.status(400).json({ 
+                success: false, 
+                message: 'Limit must be between 1 and 1000' 
+            });
+        }
+        
+        // Calculate offset
+        const offset = page * limit;
+        
+        // Determine order clause
+        let orderBy = '';
+        if (sort === 'popularity') {
+            orderBy = 'popularity DESC, j.created_at DESC';
+        } else {
+            orderBy = 'j.created_at DESC';
+        }
+
+        // Get total count for pagination metadata
+        const countResult = await pool.query(`
+            SELECT COUNT(*) as total
+            FROM jokes j
+            WHERE j.deleted_at IS NULL
+        `);
+        const totalPosts = parseInt(countResult.rows[0].total);
+
+        // Get paginated posts
+        const result = await pool.query(`
+            SELECT
+              j.id,
+              j.content,
+              u.username AS author,
+              j.length,
+              j.popularity,
+              j.created_at
+            FROM jokes j
+              JOIN users u ON j.author_id = u.id
+            WHERE j.deleted_at IS NULL
+            ORDER BY ${orderBy}
+            LIMIT $1 OFFSET $2
+        `, [limit, offset]);
+
+        // Calculate pagination metadata
+        const hasMore = (offset + result.rows.length) < totalPosts;
+        const totalPages = Math.ceil(totalPosts / limit);
+
+        res.json({
+            posts: result.rows,
+            hasMore: hasMore,
+            total: totalPosts,
+            currentPage: page,
+            totalPages: totalPages,
+            limit: limit
+        });
+    } catch (err) {
+        console.error('Error fetching posts:', err);
+        res.status(500).json({ 
+            success: false, 
+            message: 'Internal server error' 
+        });
+    }
 });
 
 // Delete post

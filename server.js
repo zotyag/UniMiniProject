@@ -112,11 +112,24 @@ app.get('/api/posts', async (req, res) => {
 		  JOIN users u ON j.author_id = u.id
 		GROUP BY
 		  j.id, u.username, j.content, j.length, j.created_at
+		HAVING j.deleted_at IS NULL
 		ORDER BY
 		  ${orderBy}
 	`);
 
 	res.json(result.rows);
+});
+
+// Delete post
+app.delete('/api/posts/:id', async (req, res) => {
+	try {
+		const { id } = req.params;
+		console.log(id);
+		await pool.query('UPDATE jokes SET deleted_at = NOW() WHERE id =  $1', [id]);
+		res.json({ success: true, message: 'Post successfully deleted' });
+	} catch (err) {
+		res.status(500).json({ success: false, message: 'Internal server error' });
+	}
 });
 
 app.listen(PORT, () => {

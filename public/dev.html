@@ -176,22 +176,23 @@
 <script src="js/login.js"></script>
 <script src="js/new_post.js"></script>
 <script src="js/loadPosts.js"></script>
+<script src="js/deletePost.js"></script>
 
 <script>
     async function loadPostsIntoTable() {
         // var posts = await loadPosts('popularity');
         var posts = await loadPosts('date');
-        console.log(posts);
 
-        posts.forEach(user => {
-            add(user.author, user.created_at, user.content, user.popularity)
+        document.getElementById('posts').innerHTML = "";
+        posts.forEach(post => {
+            add(post.id, post.author, post.created_at, post.content, post.popularity)
         });
 
 
 
     }
 
-    async function add(name, date, text, rating) {
+    async function add(jokeId, author, created_at, text, rating) {
         // 1. Megkeressük a fő konténert
         const postsContainer = document.getElementById('posts');
 
@@ -211,13 +212,13 @@
         // 5. Létrehozzuk a <div class="author-name"> elemet
         const authorNameDiv = document.createElement('div');
         authorNameDiv.classList.add('author-name');
-        authorNameDiv.textContent = name; // Alapértelmezett érték beállítása
+        authorNameDiv.textContent = author; // Alapértelmezett érték beállítása
 
         // 6. Létrehozzuk a <div class="time-of-post"> elemet
         const timeOfPostDiv = document.createElement('div');
         timeOfPostDiv.classList.add('time-of-post');
 
-        const dateObj = new Date(date);
+        const dateObj = new Date(created_at);
         const year = dateObj.getUTCFullYear();
         const month = dateObj.getUTCMonth() + 1;
         const day = dateObj.getUTCDay();
@@ -235,6 +236,9 @@
         const deleteButton = document.createElement('button');
         deleteButton.classList.add('btn-delete');
         deleteButton.textContent = 'delete';
+        deleteButton.addEventListener('click', () => {
+            deletePost(jokeId)
+        })
 
         // 8. Létrehozzuk a <div class="joke"> elemet
         const jokeDiv = document.createElement('div');

@@ -326,20 +326,99 @@
         }
     </script>
 
+    <script>
+        const pressedVotes = {}; // keys: jokeId, values: 2 or -2 or 0 (none)
+        //pressedVotes[jokeId] = value;
+
+        function reapplyPressed(postEl, jokeId) {
+            const vote = pressedVotes[jokeId];
+            if (!postEl) return;
+            postEl.querySelectorAll('.rate-btn').forEach(btn => {
+                const btnValue = parseInt(btn.dataset.value, 10);
+                if (btnValue === vote) {
+                    btn.classList.add('pressed');
+                } else {
+                    btn.classList.remove('pressed');
+                }
+            });
+        }
+    </script>
+
 
     <script>
+        // Replace or extend the existing delegated handler:
         document.addEventListener('click', async (e) => {
             const btn = e.target.closest('.rate-btn');
             if (!btn) return;
 
-            const jokeId = btn.dataset.jokeId;
-            const value = parseInt(btn.dataset.value, 10);
+            const postEl = btn.closest('.post');
+            const jokeId = postEl?.dataset.jokeId || btn.dataset.jokeId;
+            if (!jokeId) return;
 
+            const value = parseInt(btn.dataset.value, 10);
             if (value !== 1 && value !== -1) return;
 
-            await ratePost(jokeId, value);
+            try {
+                toggleRateButtons(postEl, true);
+                pressedVotes[jokeId] = value;   // save pressed state
+                btn.classList.add('pressed');
+                await ratePost(jokeId, value);
+                await refreshPostById(jokeId);
+                reapplyPressed(postEl, jokeId);
+            } catch (err) {
+                console.error('Rating failed', err);
+            } finally {
+                toggleRateButtons(postEl, false);
+                reapplyPressed(postEl, jokeId);
+            }
         });
     </script>
+
+    <script>
+        function formatUtc(iso) {
+            const d = new Date(iso);
+            const pad = n => String(n).padStart(2, '0');
+            return `${d.getUTCFullYear()}-${pad(d.getUTCMonth() + 1)}-${pad(d.getUTCDate())} ${pad(d.getUTCHours())}:${pad(d.getUTCMinutes())}:${pad(d.getUTCSeconds())}`;
+        }
+
+        function patchPostEl(el, post) {
+            el.id = `post-${post.id}`;
+            el.dataset.jokeId = String(post.id);
+
+            const authorEl = el.querySelector('.author-name');
+            if (authorEl) authorEl.textContent = post.author ?? '';
+
+            const timeEl = el.querySelector('.time-of-post');
+            if (timeEl) timeEl.textContent = post.created_at ? formatUtc(post.created_at) : '';
+
+            const textEl = el.querySelector('.joke-text');
+            if (textEl) textEl.textContent = post.content ?? '';
+
+            const ratingEl = el.querySelector('.rating-value');
+            if (ratingEl) ratingEl.textContent = String(post.popularity ?? 0);
+        }
+
+        async function refreshPostById(id) {
+            const el = document.getElementById(`post-${id}`);
+            if (!el) return;
+
+            const res = await fetch(`/api/posts/${id}`);
+            if (!res.ok) return;
+
+            const data = await res.json();
+            if (!data || !data.post) return;
+
+            patchPostEl(el, data.post);
+        }
+
+        function toggleRateButtons(postEl, disabled) {
+            postEl.querySelectorAll('.rate-btn').forEach(b => {
+                b.disabled = disabled;
+                if (disabled) b.setAttribute('aria-disabled', 'true'); else b.removeAttribute('aria-disabled');
+            });
+        }
+    </script>
+
 
 
     <script src="js/new_post.js"></script>

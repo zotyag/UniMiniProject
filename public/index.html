@@ -21,13 +21,13 @@
             </div>
             <div id="nav-menu">
                 <div class="nav-item">
-                    <div class="nav-item-text">Home</div>
+                    <div class="nav-item-text"><a href="index.html">Home</a></div>
                 </div>
                 <div class="nav-item">
-                    <div class="nav-item-text">About</div>
+                    <div class="nav-item-text"><a href="about.html">About</a></div>
                 </div>
                 <div class="nav-item">
-                    <div class="nav-item-text">Rules</div>
+                    <div class="nav-item-text"><a href="rules.html">Rules</a></div>
                 </div>
             </div>
         </div>
@@ -47,18 +47,17 @@
 
     <script src="js/getCurrentUserData.js"></script>
     <script src="js/login.js"></script>
+    <script src="js/deletePost.js"></script>
 
 
 
     <script>
         window.onload = userLoggedIn();
-        // window.onload = getCurrentUserData();
 
         async function userLoggedIn() {
             const user_info = await getCurrentUserData()
             // if user logged in
             if (user_info.uname != undefined) {
-                console.log("Got it!");
                 const user_name_field = document.getElementById('logged-in-user');
                 const user_name_value = document.getElementById('logged-in-user-name');
 
@@ -258,6 +257,8 @@
             deleteButton.textContent = 'delete';
             deleteButton.addEventListener('click', () => {
                 deletePost(jokeId);
+                window.scrollTo(0, 0); // Scroll to top
+                loadPostsIntoTable(true);
             });
 
             // 8. Létrehozzuk a <div class="joke"> elemet

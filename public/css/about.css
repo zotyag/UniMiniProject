@@ -1,0 +1,18 @@
+.about {
+	border: thin solid black;
+	padding: 1rem;
+}
+
+.about-title {
+	font-size: 2rem;
+	align-items: center;
+	font-weight: 500;
+	display: flex;
+	flex-direction: column;
+}
+
+.about-us {
+	font-size: large;
+	align-items: center;
+	margin-top: 1rem;
+}

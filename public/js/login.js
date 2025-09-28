@@ -8,8 +8,10 @@ async function login(e) {
 		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify({ uname: uname.value, passwd: passwd.value }),
 	});
-	if (res.ok) console.log('Successfully logged in!');
-	else {
+	if (res.ok) {
+		console.log('Successfully logged in!');
+		document.location.href = 'index.html';
+	} else {
 		const errorData = await res.json();
 
 		alert(errorData.message);

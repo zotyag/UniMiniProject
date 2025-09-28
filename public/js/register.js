@@ -9,8 +9,10 @@ async function registerNewUser(e) {
 		body: JSON.stringify({ uname: uname.value, passwd: passwd.value }),
 	});
 
-	if (res.ok) console.log('User added!');
-	else {
+	if (res.ok) {
+		console.log('User added!');
+		document.location.href = 'login.html';
+	} else {
 		const errorData = await res.json();
 
 		if (res.status === 409) {

@@ -71,7 +71,6 @@ h3 {
 	text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
 }
 
-
 #navbar .nav-item {
 	background-color: cornflowerblue;
 	padding: 0.25rem 0;
@@ -106,9 +105,23 @@ h3 {
 	margin-left: auto;
 }
 
-#btn-logout {
+#btn-login {
 	height: 30px !important;
 	order: -1;
+}
+
+/* ============================================================================== */
+
+#logged-in-user {
+	display: none;
+}
+
+.btn-delete {
+	display: none;
+}
+
+.is-admin .btn-delete {
+	display: block;
 }
 
 /* ============================================================================== */
@@ -130,8 +143,8 @@ h3 {
 }
 
 #filter button.active {
-  background: rgb(233, 187, 60);
-  border-color: #999;
+	background: rgb(233, 187, 60);
+	border-color: #999;
 }
 
 #new_post {
@@ -211,7 +224,7 @@ textarea,
 		display: none;
 	}
 
-	#btn-logout {
+	#btn-login {
 		order: 1;
 		margin: 0.55rem;
 	}

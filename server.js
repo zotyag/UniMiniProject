@@ -1,4 +1,4 @@
-require('dotenv').config({ debug: true });
+require('dotenv').config();
 
 const express = require('express');
 const session = require('express-session');
@@ -12,9 +12,9 @@ const { Query } = require('pg');
 const app = express();
 const PORT = process.env.PORT;
 
-app.use(cors());
 app.use(express.json());
 app.use(express.static('public'));
+app.use(cors());
 app.use(session({ secret: 'secret', resave: false, saveUninitialized: false }));
 
 async function isUsernameTaken(uname) {
@@ -91,26 +91,27 @@ app.post('/api/new_post', async (req, res) => {
 	res.json({ success: true });
 });
 
-
 // Gives back jokes in pages
 app.get('/api/posts', async (req, res) => {
-  try {
-    const sortParam = req.query.sort === 'popularity'
-      ? 'popularity DESC, j.created_at DESC'
-      : 'j.created_at DESC';
+	try {
+		const sortParam =
+			req.query.sort === 'popularity'
+				? 'popularity DESC, j.created_at DESC'
+				: 'j.created_at DESC';
 
-    const page = Math.max(parseInt(req.query.page) || 0, 0);
-    const limit = Math.min(Math.max(parseInt(req.query.limit) || 100, 1), 1000);
-    const offset = page * limit;
+		const page = Math.max(parseInt(req.query.page) || 0, 0);
+		const limit = Math.min(Math.max(parseInt(req.query.limit) || 100, 1), 1000);
+		const offset = page * limit;
 
-    const countResult = await pool.query(`
+		const countResult = await pool.query(`
       SELECT COUNT(*) AS total
       FROM jokes j
       WHERE j.deleted_at IS NULL
     `);
-    const total = parseInt(countResult.rows[0].total, 10);
+		const total = parseInt(countResult.rows[0].total, 10);
 
-    const result = await pool.query(`
+		const result = await pool.query(
+			`
       SELECT
         j.id,
         j.content,
@@ -123,22 +124,23 @@ app.get('/api/posts', async (req, res) => {
       WHERE j.deleted_at IS NULL
       ORDER BY ${sortParam}
       LIMIT $1 OFFSET $2
-    `, [limit, offset]);
+    `,
+			[limit, offset],
+		);
 
-    res.json({
-      posts: result.rows,
-      hasMore: (offset + result.rows.length) < total,
-      total,
-      currentPage: page,
-      totalPages: Math.ceil(total / limit),
-      limit
-    });
-  } catch (err) {
-    console.error('Error fetching posts:', err);
-    res.status(500).json({ success: false, message: 'Internal server error' });
-  }
+		res.json({
+			posts: result.rows,
+			hasMore: offset + result.rows.length < total,
+			total,
+			currentPage: page,
+			totalPages: Math.ceil(total / limit),
+			limit,
+		});
+	} catch (err) {
+		console.error('Error fetching posts:', err);
+		res.status(500).json({ success: false, message: 'Internal server error' });
+	}
 });
-
 
 // Delete post
 app.delete('/api/posts/:id', async (req, res) => {

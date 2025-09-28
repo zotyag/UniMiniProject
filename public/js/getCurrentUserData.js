@@ -1,13 +1,17 @@
 async function getCurrentUserData() {
-	const res = await fetch('/api/currentUserData');
+	try {
+		const res = await fetch('/api/currentUserData');
 
-	const data = await res.json();
+		const data = await res.json();
 
-	console.log(data);
+		if (res.ok) {
+			// console.log(data.message);
+		} else {
+			alert('Error: ' + data.message);
+		}
 
-	if (res.ok) {
-		console.log(data.message);
-	} else {
-		alert('Error: ' + data.message);
+		return data;
+	} catch (err) {
+		return err;
 	}
 }

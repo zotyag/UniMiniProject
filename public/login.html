@@ -1,28 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login page</title>
-    <link rel="stylesheet" href="reg_log_style.css">
+    <link rel="stylesheet" href="css/reg_log_style.css">
     <link rel="icon" type="image/png" href="/favicon.png">
 </head>
+
 <body>
     <main>
-        <form method="post">
+        <form onsubmit="login(event)" method="post">
             <h1>Login</h1>
-                <div class="field">
-                    <label for="">Username</label>
-                    <input type="text"  id="login-username" name="Username" placeholder="Username">
-                </div>
-                <div class="field">
-                    <label for="">Password</label>
-                    <input type="password" id="login-password" name="Password" placeholder="Password">
-                </div>
-                <div>
-                    <button type="submit">Login</button>
-                </div>
-                <a href="http://127.0.0.1:5500/register.html">Még nincs profilod? Katt ide</a>
+            <div class="field">
+                <label for="">Username</label>
+                <input type="text" id="login-username" name="Username" placeholder="Username">
+            </div>
+            <div class="field">
+                <label for="">Password</label>
+                <input type="password" id="login-password" name="Password" placeholder="Password">
+            </div>
+            <div>
+                <button type="submit">Login</button>
+            </div>
+            <a href="register.html">Még nincs profilod? Katt ide</a>
         </form>
     </main>
+
+    <script src="js/login.js"></script>
 </body>

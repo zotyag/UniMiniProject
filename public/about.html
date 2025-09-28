@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Viccelek</title>
+    <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/about.css">
     <link rel="icon" type="image/png" href="/favicon.png">
 </head>
@@ -15,19 +16,19 @@
         <h1 class="title">Viccelek</h1>
         <div id="navbar">
             <div class="user-info">
-                <div>Username: <span id="logged-in-user">TesztElek13</span></div>
-                <button id="btn-logout">Login</button>
-                <button id="menu-toggle-btn" onclick="myFunc()">☰</button>
+                <div id="logged-in-user">Username: <span id="logged-in-user-name">TesztElek13</span></div>
+                <button onclick="userLoggedIn()" id="btn-login">Login</button>
+                <button id="menu-toggle-btn" onclick="toggleNavMenuCollapse()">☰</button>
             </div>
             <div id="nav-menu">
                 <div class="nav-item">
-                    <div class="nav-item-text" ><a href="index.html">Home</a></div>
+                    <div class="nav-item-text"><a href="index.html">Home</a></div>
                 </div>
                 <div class="nav-item">
-                    <div class="nav-item-text" ><a href="about.html">About</a></div>
+                    <div class="nav-item-text"><a href="about.html">About</a></div>
                 </div>
                 <div class="nav-item">
-                    <div class="nav-item-text" ><a href="rules.html">Rules</a></div>
+                    <div class="nav-item-text"><a href="rules.html">Rules</a></div>
                 </div>
             </div>
         </div>
@@ -37,4 +38,62 @@
         <div class="about-us">We are The Boys just three regular guys who love to laugh. We wanted to create a site where people can write their own jokes and rate them. On this site we like to see unique and not overused jokes. You can wrote them but we will decide that we keep or remove them. Use your creativity and make new jokes which will make people laugh or at least smile. We hope you will enjoy your time on our side. Have a wonderful day.</div>
 
     </div>
+
+    <script src="js/getCurrentUserData.js"></script>
+    <script src="js/login.js"></script>
+
+    <script>
+        window.onload = userLoggedIn();
+
+        function toggleNavMenuCollapse() {
+            var a = document.getElementById('nav-menu');
+            if (a.style.display === 'none') {
+                a.style.display = 'block';
+            } else {
+                a.style.display = 'none';
+            }
+        }
+
+        async function userLoggedIn() {
+            const user_info = await getCurrentUserData()
+            // if user logged in
+            if (user_info.uname != undefined) {
+                const user_name_field = document.getElementById('logged-in-user');
+                const user_name_value = document.getElementById('logged-in-user-name');
+
+                user_name_value.textContent = user_info.uname;
+                user_name_field.style.display = "block"
+
+
+                const btn_login = document.getElementById('btn-login');
+                btn_login.textContent = "logout"
+                btn_login.addEventListener('click', async () => {
+                    logout();
+                })
+            } else { // if user logged out
+                const btn_login = document.getElementById('btn-login');
+                const user_name_field = document.getElementById('logged-in-user').style.display = 'none';
+                const user_name_value = document.getElementById('logged-in-user-name').textContent = "not logged in";
+
+
+                btn_login.textContent = "login"
+                btn_login.addEventListener('click', async () => {
+                    document.location.href = "login.html";
+                })
+            }
+
+        }
+
+        function toggleNavMenuCollapse() {
+            var a = document.getElementById('nav-menu');
+            if (a.style.display === 'none') {
+                a.style.display = 'block';
+            } else {
+                a.style.display = 'none';
+            }
+        }
+    </script>
+
 </body>
+
+</html>

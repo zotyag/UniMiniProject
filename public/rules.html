@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viccelek</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/rules.css">
+    <link rel="icon" type="image/png" href="/favicon.png">
+</head>
+
+<body>
+    <div class="banner">
+        <div class="banner-img"></div>
+        <h1 class="title">Viccelek</h1>
+        <div id="navbar">
+            <div class="user-info">
+                <div id="logged-in-user">Username: <span id="logged-in-user-name">TesztElek13</span></div>
+                <button onclick="userLoggedIn()" id="btn-login">Login</button>
+                <button id="menu-toggle-btn" onclick="toggleNavMenuCollapse()">☰</button>
+            </div>
+            <div id="nav-menu">
+                <div class="nav-item">
+                    <div class="nav-item-text" ><a href="index.html">Home</a></div>
+                </div>
+                <div class="nav-item">
+                    <div class="nav-item-text" ><a href="about.html">About</a></div>
+                </div>
+                <div class="nav-item">
+                    <div class="nav-item-text" ><a href="rules.html">Rules</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="rules">
+        <div class="dont">If you break the rules your user will be removed from the site.</div>
+        <div class="rules-title">Rules:</div>
+        <ol class="all-rules">
+            <li>Don't be disrespect</li>
+            <li>Don't be racist</li>
+            <li>Respect other user's jokes</li>
+            <li>Don't use offensive usernames</li>
+            <li>Enjoy writing and reading jokes</li>
+            <li>Don't steal jokes from others</li>
+        </ol>
+
+    </div>
+    <script>
+         function toggleNavMenuCollapse() {
+            var a = document.getElementById('nav-menu');
+            if (a.style.display === 'none') {
+                a.style.display = 'block';
+            } else {
+                a.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -303,11 +303,10 @@
             ratingDiv.classList.add('rating');
 
             // 10. Létrehozzuk a lájk gombot (fel)
+            // Create buttons as before
             const upButton = document.createElement('button');
-            upButton.innerHTML = '&#x2B9D;';
-            upButton.addEventListener('click', () => {
-                ratePost(jokeId, 1);
-            });
+            upButton.setAttribute('aria-label', 'Like');
+            upButton.innerHTML = '<img src="like-svgrepo-com.svg" width="20" height="20" alt="" aria-hidden="true">';
 
             // 11. Létrehozzuk a <div class="rating-value"> elemet
             const ratingValueDiv = document.createElement('div');
@@ -316,10 +315,8 @@
 
             // 12. Létrehozzuk a diszlájk gombot (le)
             const downButton = document.createElement('button');
-            downButton.innerHTML = '&#x2B9F;';
-            downButton.addEventListener('click', () => {
-                ratePost(jokeId, -1);
-            });
+            downButton.setAttribute('aria-label', 'Dislike');
+            downButton.innerHTML = '<img src="dislike-svgrepo-com.svg" width="20" height="20" alt="" aria-hidden="true">';
 
             // 13. Létrehozzuk a <p class="joke-text"> elemet
             const jokeTextarea = document.createElement('p');
@@ -359,4 +356,5 @@
 
 
 </body>
+
 </html>

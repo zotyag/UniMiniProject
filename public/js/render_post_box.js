@@ -66,6 +66,13 @@
         const cancelBtn = document.createElement('button');
         cancelBtn.type = 'button';
         cancelBtn.textContent = 'Cancel';
+        Object.assign(cancelBtn.style, {
+            border: 'none',
+            padding: '8px 14px',
+            borderRadius: '6px',
+            cursor: 'pointer',
+            margin: '8px'
+        });
 
         const postBtn = document.createElement('button');
         postBtn.type = 'submit';
@@ -76,7 +83,8 @@
             border: 'none',
             padding: '8px 14px',
             borderRadius: '6px',
-            cursor: 'pointer'
+            cursor: 'pointer',
+            margin: '8px'
         });
 
         buttons.appendChild(cancelBtn);

@@ -62,14 +62,18 @@
         window.onload = userLoggedIn();
 
         async function userLoggedIn() {
+
+
             const user_info = await getCurrentUserData()
             // if user logged in
             if (user_info.uname != undefined) {
                 const user_name_field = document.getElementById('logged-in-user');
                 const user_name_value = document.getElementById('logged-in-user-name');
+                const new_post_btn = document.getElementById('new_post');
 
                 user_name_value.textContent = user_info.uname;
                 user_name_field.style.display = "block"
+                new_post_btn.style.display = 'block';
 
 
                 const postsContainer = document.getElementById('posts');
@@ -88,6 +92,10 @@
                 const btn_login = document.getElementById('btn-login');
                 const user_name_field = document.getElementById('logged-in-user').style.display = 'none';
                 const user_name_value = document.getElementById('logged-in-user-name').textContent = "not logged in";
+                const new_post_btn = document.getElementById('new_post');
+
+                new_post_btn.style.display = 'none';
+
 
                 const postsContainer = document.getElementById('posts').classList.remove('is-admin');
 

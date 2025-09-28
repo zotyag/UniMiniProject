@@ -3,6 +3,13 @@ async function login(e) {
 	const uname = document.getElementById('login-username');
 	const passwd = document.getElementById('login-password');
 
+	if (uname.value === '' || passwd.value === '') {
+		return alert('Neither field can be empty!');
+	}
+	if (/\s/.test(uname.value) || /\s/.test(passwd.value)) {
+		return alert('Neither field can contain whitespace character(s)!');
+	}
+
 	const res = await fetch('/api/login', {
 		method: 'post',
 		headers: { 'Content-Type': 'application/json' },

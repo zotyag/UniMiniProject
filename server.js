@@ -142,6 +142,46 @@ app.get('/api/posts', async (req, res) => {
 	}
 });
 
+
+// GET /api/posts/:id — returns a single joke by id
+app.get('/api/posts/:id', async (req, res) => {
+  // Validate id
+  const id = Number.parseInt(req.params.id, 10);
+  if (!Number.isInteger(id) || id <= 0) {
+    return res.status(400).json({ success: false, message: 'Invalid id' });
+  }
+
+  try {
+    const query = `
+      SELECT
+        j.id,
+        j.content,
+        u.username AS author,
+        j.length,
+        j.popularity,
+        j.created_at
+      FROM jokes j
+      JOIN users u ON j.author_id = u.id
+      WHERE j.deleted_at IS NULL
+        AND j.id = $1
+      LIMIT 1
+    `;
+
+    // Parameterized query to prevent SQL injection
+    const { rows } = await pool.query(query, [id]);
+
+    if (rows.length === 0) {
+      return res.status(404).json({ success: false, message: 'Joke not found' });
+    }
+
+    return res.json({ post: rows[0] });
+  } catch (err) {
+    console.error('Error fetching post by id:', err);
+    return res.status(500).json({ success: false, message: 'Internal server error' });
+  }
+});
+
+
 // Delete post
 app.delete('/api/posts/:id', async (req, res) => {
 	try {

@@ -40,92 +40,7 @@
             <button id="new_post">New post</button>
         </div>
         <div id="posts">
-            <!--DO NOT REMOVE DUMMY CONTENT!!!!!!!!!!!!!!!!!!!-->
-            <div class="post">
-                <div class="header">
-                    <div class="author">
-                        <div class="author-name">John</div>
-                        <div class="time-of-post">2020/04/12</div>
-                    </div>
-                    <button class="btn-delete">delete</button>
-                </div>
-                <div class="joke">
-                    <div class="rating">
-                        <button>&#x2B9D;</button>
-                        <div class="rating-value">0</div>
-                        <button>&#x2B9F;</button>
-                    </div>
-                    <textarea>This is a joke!</textarea>
-                </div>
-            </div>
-            <div class="post">
-                <div class="header">
-                    <div class="author">
-                        <div class="author-name">John</div>
-                        <div class="time-of-post">2020/04/12</div>
-                    </div>
-                    <button class="btn-delete">delete</button>
-                </div>
-                <div class="joke">
-                    <div class="rating">
-                        <button>&#x2B9D;</button>
-                        <div class="rating-value">0</div>
-                        <button>&#x2B9F;</button>
-                    </div>
-                    <textarea>This is a joke!</textarea>
-                </div>
-            </div>
-            <div class="post">
-                <div class="header">
-                    <div class="author">
-                        <div class="author-name">John</div>
-                        <div class="time-of-post">2020/04/12</div>
-                    </div>
-                    <button class="btn-delete">delete</button>
-                </div>
-                <div class="joke">
-                    <div class="rating">
-                        <button>&#x2B9D;</button>
-                        <div class="rating-value">0</div>
-                        <button>&#x2B9F;</button>
-                    </div>
-                    <textarea>This is a joke!</textarea>
-                </div>
-            </div>
-            <div class="post">
-                <div class="header">
-                    <div class="author">
-                        <div class="author-name">John</div>
-                        <div class="time-of-post">2020/04/12</div>
-                    </div>
-                    <button class="btn-delete">delete</button>
-                </div>
-                <div class="joke">
-                    <div class="rating">
-                        <button>&#x2B9D;</button>
-                        <div class="rating-value">0</div>
-                        <button>&#x2B9F;</button>
-                    </div>
-                    <textarea>This is a joke!</textarea>
-                </div>
-            </div>
-            <div class="post">
-                <div class="header">
-                    <div class="author">
-                        <div class="author-name">John</div>
-                        <div class="time-of-post">2020/04/12</div>
-                    </div>
-                    <button class="btn-delete">delete</button>
-                </div>
-                <div class="joke">
-                    <div class="rating">
-                        <button>&#x2B9D;</button>
-                        <div class="rating-value">0</div>
-                        <button>&#x2B9F;</button>
-                    </div>
-                    <textarea>This is a joke!</textarea>
-                </div>
-            </div>
+
         </div>
         <div id="sentinel" style="height: 1px;"></div>
     </main>
@@ -194,6 +109,8 @@
         });
     </script>
 
+
+    <script src="js/ratePost.js" defer></script>
     <script>
         // Existing pagination state assumed:
         const pageSize = 100;
@@ -302,6 +219,10 @@
             const postDiv = document.createElement('div');
             postDiv.classList.add('post');
 
+            // NEW: stable id and dataset from DB id
+            postDiv.id = `post-${jokeId}`;
+            postDiv.dataset.jokeId = String(jokeId);
+
             // 3. Létrehozzuk a <div class="header"> elemet
             const headerDiv = document.createElement('div');
             headerDiv.classList.add('header');
@@ -350,8 +271,13 @@
             // 10. Létrehozzuk a lájk gombot (fel)
             // Create buttons as before
             const upButton = document.createElement('button');
+            upButton.type = 'button';
+            upButton.classList.add('rate-btn', 'rate-btn--up'); // .rate-btn enables the delegated handler
             upButton.setAttribute('aria-label', 'Like');
+            upButton.dataset.jokeId = String(jokeId);
+            upButton.dataset.value = '1';
             upButton.innerHTML = '<img src="up.svg" width="20" height="20" alt="" aria-hidden="true">';
+
 
             // 11. Létrehozzuk a <div class="rating-value"> elemet
             const ratingValueDiv = document.createElement('div');
@@ -360,7 +286,11 @@
 
             // 12. Létrehozzuk a diszlájk gombot (le)
             const downButton = document.createElement('button');
+            downButton.type = 'button';
+            downButton.classList.add('rate-btn', 'rate-btn--down');
             downButton.setAttribute('aria-label', 'Dislike');
+            downButton.dataset.jokeId = String(jokeId);
+            downButton.dataset.value = '-1';
             downButton.innerHTML = '<img src="down.svg" width="20" height="20" alt="" aria-hidden="true">';
 
             // 13. Létrehozzuk a <p class="joke-text"> elemet
@@ -393,6 +323,21 @@
             // A kész post a posts konténerbe
             postsContainer.appendChild(postDiv);
         }
+    </script>
+
+
+    <script>
+        document.addEventListener('click', async (e) => {
+            const btn = e.target.closest('.rate-btn');
+            if (!btn) return;
+
+            const jokeId = btn.dataset.jokeId;
+            const value = parseInt(btn.dataset.value, 10);
+
+            if (value !== 1 && value !== -1) return;
+
+            await ratePost(jokeId, value);
+        });
     </script>
 
 

@@ -22,4 +22,6 @@ async function createPost(e) {
 
 		alert(errorData.message);
 	}
+
+	return res;
 }

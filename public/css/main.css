@@ -27,6 +27,21 @@ h3 {
 	text-decoration: none;
 }
 
+.rate-btn.pressed {
+  background-color: #036fe2; /* light blue for pressed */
+    border-radius: 4px;
+}
+
+.rate-btn--up.pressed {
+  background-color: #1fa13f; /* light green for upvote pressed */
+    border-radius: 4px;
+}
+
+.rate-btn--down.pressed {
+  background-color: #c25c67; /* light red for downvote pressed */
+    border-radius: 4px;
+}
+
 /* ============================================================================== */
 
 .banner-img {

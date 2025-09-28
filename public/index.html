@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="icon" type="image/png" href="/favicon.png">
 </head>
+
 <body>
     <div class="banner">
         <div class="banner-img"></div>
@@ -14,7 +16,7 @@
         <div id="navbar">
             <div class="user-info">
                 <div>Username: <span id="logged-in-user">TesztElek13</span></div>
-                <button id="btn-logout">Logout</button>
+                <button id="btn-logout">Login</button>
                 <button id="menu-toggle-btn" onclick="myFunc()">☰</button>
             </div>
             <div id="nav-menu">
@@ -38,6 +40,7 @@
             <button id="new_post">New post</button>
         </div>
         <div id="posts">
+            <!--DO NOT REMOVE DUMMY CONTENT!!!!!!!!!!!!!!!!!!!-->
             <div class="post">
                 <div class="header">
                     <div class="author">
@@ -130,61 +133,61 @@
 
 
     <script>
-    function myFunc() {
-        var a = document.getElementById('nav-menu');
-        if (a.style.display === 'none') {
-            a.style.display = 'block';
-        } else {
-            a.style.display = 'none';
+        function myFunc() {
+            var a = document.getElementById('nav-menu');
+            if (a.style.display === 'none') {
+                a.style.display = 'block';
+            } else {
+                a.style.display = 'none';
+            }
         }
-    }
 
-    // Reset scrollbar to top on page load
-    window.addEventListener('DOMContentLoaded', () => {
-        window.scrollTo(0, 0); // Scroll to top
-        loadPostsIntoTable(true);
-    });
+        // Reset scrollbar to top on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            window.scrollTo(0, 0); // Scroll to top
+            loadPostsIntoTable(true);
+        });
     </script>
 
     <script>
         // Existing pagination state assumed:
-const pageSize = 100;
-let currentPage = 0;
-let currentSort = 'date'; // 'date' or 'popularity'
-let loading = false;
-let hasMore = true;
-let io = null;
+        const pageSize = 100;
+        let currentPage = 0;
+        let currentSort = 'date'; // 'date' or 'popularity'
+        let loading = false;
+        let hasMore = true;
+        let io = null;
 
-const timeBtn = document.getElementById('btn-sort-time');
-const popBtn = document.getElementById('btn-sort-pop');
+        const timeBtn = document.getElementById('btn-sort-time');
+        const popBtn = document.getElementById('btn-sort-pop');
 
-function updateSortButtons() {
-  const isDate = currentSort === 'date';
-  document.getElementById('btn-sort-time')?.classList.toggle('active', isDate);
-  document.getElementById('btn-sort-time')?.setAttribute('aria-pressed', String(isDate));
-  document.getElementById('btn-sort-pop')?.classList.toggle('active', !isDate);
-  document.getElementById('btn-sort-pop')?.setAttribute('aria-pressed', String(!isDate));
-}
+        function updateSortButtons() {
+            const isDate = currentSort === 'date';
+            document.getElementById('btn-sort-time')?.classList.toggle('active', isDate);
+            document.getElementById('btn-sort-time')?.setAttribute('aria-pressed', String(isDate));
+            document.getElementById('btn-sort-pop')?.classList.toggle('active', !isDate);
+            document.getElementById('btn-sort-pop')?.setAttribute('aria-pressed', String(!isDate));
+        }
 
-function setSort(sort) {
-  if (loading) return;
-  if (currentSort === sort) return;
-  currentSort = sort;
+        function setSort(sort) {
+            if (loading) return;
+            if (currentSort === sort) return;
+            currentSort = sort;
 
-  // Visual/ARIA state
-  const isDate = sort === 'date';
-  timeBtn?.classList.toggle('active', isDate);
-  popBtn?.classList.toggle('active', !isDate);
-  timeBtn?.setAttribute('aria-pressed', String(isDate));
-  popBtn?.setAttribute('aria-pressed', String(!isDate));
+            // Visual/ARIA state
+            const isDate = sort === 'date';
+            timeBtn?.classList.toggle('active', isDate);
+            popBtn?.classList.toggle('active', !isDate);
+            timeBtn?.setAttribute('aria-pressed', String(isDate));
+            popBtn?.setAttribute('aria-pressed', String(!isDate));
 
 
-  // Reset and load first page in new order
-  loadPostsIntoTable(true);
+            // Reset and load first page in new order
+            loadPostsIntoTable(true);
 
-  // Optional: scroll to top
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
+            // Optional: scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
 
         // Server fetch for a single page
         async function fetchPosts(sort = currentSort, page = currentPage, limit = pageSize) {
@@ -195,41 +198,41 @@ function setSort(sort) {
         }
 
         timeBtn?.addEventListener('click', () => setSort('date'));
-popBtn?.addEventListener('click', () => setSort('popularity'));
+        popBtn?.addEventListener('click', () => setSort('popularity'));
 
-// Keep your fetchPosts as it already sends ?sort=...&page=...&limit=...
-// Ensure loadPostsIntoTable re-observes sentinel when resetting:
-async function loadPostsIntoTable(initial = false) {
-  if (loading || (!hasMore && !initial)) return;
-  loading = true;
-  try {
-    if (initial) {
-      document.getElementById('posts').innerHTML = '';
-      currentPage = 0;
-      hasMore = true;
+        // Keep your fetchPosts as it already sends ?sort=...&page=...&limit=...
+        // Ensure loadPostsIntoTable re-observes sentinel when resetting:
+        async function loadPostsIntoTable(initial = false) {
+            if (loading || (!hasMore && !initial)) return;
+            loading = true;
+            try {
+                if (initial) {
+                    document.getElementById('posts').innerHTML = '';
+                    currentPage = 0;
+                    hasMore = true;
 
-      // Reconnect observer on reset so infinite scroll works after sorting
-      if (io && sentinel) io.unobserve(sentinel);
-      if (sentinel) {
-        io = new IntersectionObserver(entries => {
-          if (entries[0].isIntersecting) loadPostsIntoTable(false);
-        }, { rootMargin: '400px' });
-        io.observe(sentinel);
-      }
-    }
+                    // Reconnect observer on reset so infinite scroll works after sorting
+                    if (io && sentinel) io.unobserve(sentinel);
+                    if (sentinel) {
+                        io = new IntersectionObserver(entries => {
+                            if (entries[0].isIntersecting) loadPostsIntoTable(false);
+                        }, { rootMargin: '400px' });
+                        io.observe(sentinel);
+                    }
+                }
 
-    const { posts, hasMore: more } = await fetchPosts(currentSort, currentPage, pageSize);
-    posts.forEach(post => add(post.id, post.author, post.created_at, post.content, post.popularity));
-    hasMore = more;
-    currentPage += 1;
+                const { posts, hasMore: more } = await fetchPosts(currentSort, currentPage, pageSize);
+                posts.forEach(post => add(post.id, post.author, post.created_at, post.content, post.popularity));
+                hasMore = more;
+                currentPage += 1;
 
-    if (!hasMore && io && sentinel) io.unobserve(sentinel);
-  } catch (e) {
-    console.error(e);
-  } finally {
-    loading = false;
-  }
-}
+                if (!hasMore && io && sentinel) io.unobserve(sentinel);
+            } catch (e) {
+                console.error(e);
+            } finally {
+                loading = false;
+            }
+        }
 
         const sentinel = document.getElementById('sentinel');
         if (sentinel) {
@@ -349,5 +352,6 @@ async function loadPostsIntoTable(initial = false) {
             postsContainer.appendChild(postDiv);
         }
     </script>
+
 </body>
 </html>

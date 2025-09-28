@@ -146,7 +146,6 @@ app.get('/api/posts', async (req, res) => {
 app.delete('/api/posts/:id', async (req, res) => {
 	try {
 		const { id } = req.params;
-		console.log(id);
 		await pool.query('UPDATE jokes SET deleted_at = NOW() WHERE id =  $1', [id]);
 		res.json({ success: true, message: 'Post successfully deleted' });
 	} catch (err) {

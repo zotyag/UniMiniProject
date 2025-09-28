@@ -40,98 +40,14 @@
             <button id="new_post">New post</button>
         </div>
         <div id="posts">
-            <!--DO NOT REMOVE DUMMY CONTENT!!!!!!!!!!!!!!!!!!!-->
-            <div class="post">
-                <div class="header">
-                    <div class="author">
-                        <div class="author-name">John</div>
-                        <div class="time-of-post">2020/04/12</div>
-                    </div>
-                    <button class="btn-delete">delete</button>
-                </div>
-                <div class="joke">
-                    <div class="rating">
-                        <button>&#x2B9D;</button>
-                        <div class="rating-value">0</div>
-                        <button>&#x2B9F;</button>
-                    </div>
-                    <textarea>This is a joke!</textarea>
-                </div>
-            </div>
-            <div class="post">
-                <div class="header">
-                    <div class="author">
-                        <div class="author-name">John</div>
-                        <div class="time-of-post">2020/04/12</div>
-                    </div>
-                    <button class="btn-delete">delete</button>
-                </div>
-                <div class="joke">
-                    <div class="rating">
-                        <button>&#x2B9D;</button>
-                        <div class="rating-value">0</div>
-                        <button>&#x2B9F;</button>
-                    </div>
-                    <textarea>This is a joke!</textarea>
-                </div>
-            </div>
-            <div class="post">
-                <div class="header">
-                    <div class="author">
-                        <div class="author-name">John</div>
-                        <div class="time-of-post">2020/04/12</div>
-                    </div>
-                    <button class="btn-delete">delete</button>
-                </div>
-                <div class="joke">
-                    <div class="rating">
-                        <button>&#x2B9D;</button>
-                        <div class="rating-value">0</div>
-                        <button>&#x2B9F;</button>
-                    </div>
-                    <textarea>This is a joke!</textarea>
-                </div>
-            </div>
-            <div class="post">
-                <div class="header">
-                    <div class="author">
-                        <div class="author-name">John</div>
-                        <div class="time-of-post">2020/04/12</div>
-                    </div>
-                    <button class="btn-delete">delete</button>
-                </div>
-                <div class="joke">
-                    <div class="rating">
-                        <button>&#x2B9D;</button>
-                        <div class="rating-value">0</div>
-                        <button>&#x2B9F;</button>
-                    </div>
-                    <textarea>This is a joke!</textarea>
-                </div>
-            </div>
-            <div class="post">
-                <div class="header">
-                    <div class="author">
-                        <div class="author-name">John</div>
-                        <div class="time-of-post">2020/04/12</div>
-                    </div>
-                    <button class="btn-delete">delete</button>
-                </div>
-                <div class="joke">
-                    <div class="rating">
-                        <button>&#x2B9D;</button>
-                        <div class="rating-value">0</div>
-                        <button>&#x2B9F;</button>
-                    </div>
-                    <textarea>This is a joke!</textarea>
-                </div>
-            </div>
+
         </div>
         <div id="sentinel" style="height: 1px;"></div>
     </main>
 
     <script src="js/getCurrentUserData.js"></script>
     <script src="js/login.js"></script>
+    <script src="js/deletePost.js"></script>
 
 
 
@@ -143,7 +59,6 @@
             const user_info = await getCurrentUserData()
             // if user logged in
             if (user_info.uname != undefined) {
-                console.log("Got it!");
                 const user_name_field = document.getElementById('logged-in-user');
                 const user_name_value = document.getElementById('logged-in-user-name');
 
@@ -337,6 +252,8 @@
             deleteButton.textContent = 'delete';
             deleteButton.addEventListener('click', () => {
                 deletePost(jokeId);
+                window.scrollTo(0, 0); // Scroll to top
+                loadPostsIntoTable(true);
             });
 
             // 8. Létrehozzuk a <div class="joke"> elemet

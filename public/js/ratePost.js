@@ -8,14 +8,13 @@ async function ratePost(jokeId, value) {
 		});
 		const data = await res.json();
 
-		//* OLD CODE FOR REFRESHING USER RATING VALUES
-		// const get_rated_post = await fetch('/api/posts/' + jokeId);
-		// const rated_post = await get_rated_post.json();
-		// console.log(rated_post.post.popularity);
+		const get_rated_post = await fetch('/api/posts/' + jokeId);
+		const rated_post = await get_rated_post.json();
+		console.log(rated_post.post.popularity);
 
-		// const newValue = rated_post.post.popularity;
-		// const ratingElement = document.querySelector(`#post-${jokeId} .rating-value`);
-		// ratingElement.textContent = newValue;
+		const newValue = rated_post.post.popularity;
+		const ratingElement = document.querySelector(`#post-${jokeId} .rating-value`);
+		ratingElement.textContent = newValue;
 
 		if (res.ok) {
 			console.log(data.message);

@@ -2,7 +2,8 @@
 
 A simple, mobile‑first web app where users can post text jokes, browse others posts, rate them with like/dislike, and admins can remove inappropriate content for moderation. The goal is an interactive, responsive joke platform with popularity‑based discovery and straightforward UX.
 
-It can be accessed through this link: <https://uniminiproject.onrender.com/>
+It can be accessed through this ip:
+http://74.234.69.222:3000/
 
 ## The stack
 

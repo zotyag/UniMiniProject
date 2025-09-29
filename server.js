@@ -6,7 +6,7 @@ const cors = require('cors');
 const bcrypt = require('bcrypt');
 const path = require('path');
 
-const { pool } = require('./db');
+// const { pool } = require('./db');
 const { error } = require('console');
 const { Query } = require('pg');
 

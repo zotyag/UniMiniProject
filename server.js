@@ -10,7 +10,7 @@ const { error } = require('console');
 const { Query } = require('pg');
 
 const app = express();
-const PORT = process.env.PGPORT;
+const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(express.static('public'));

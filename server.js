@@ -4,6 +4,7 @@ const express = require('express');
 const session = require('express-session');
 const cors = require('cors');
 const bcrypt = require('bcrypt');
+const path = require('path');
 
 const { pool } = require('./db');
 const { error } = require('console');
@@ -13,10 +14,18 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
-app.use(express.static('public'));
+// app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 // app.use(session({ secret: 'secret', resave: false, saveUninitialized: false }));
-app.use(session({ secret: process.env.SESSION_SECRET, resave: false, saveUninitialized: false }));
+app.use(
+	session({
+		secret: process.env.SESSION_SECRET || 'fallback-secret',
+		resave: false,
+		saveUninitialized: false,
+		cookie: { secure: false },
+	}),
+);
 
 async function isUsernameTaken(uname) {
 	try {

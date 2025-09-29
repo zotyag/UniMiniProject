@@ -20,8 +20,7 @@ app.use(cors());
 // app.use(session({ secret: 'secret', resave: false, saveUninitialized: false }));
 app.use(
 	session({
-		secret: 'secret',
-		// secret: process.env.SESSION_SECRET || 'fallback-secret',
+		secret: process.env.SESSION_SECRET || 'fallback-secret',
 		resave: false,
 		saveUninitialized: false,
 		cookie: { secure: false },

@@ -12,6 +12,7 @@ const { Query } = require('pg');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const HOST = '0.0.0.0';
 
 app.use(express.json());
 // app.use(express.static('public'));
@@ -268,6 +269,7 @@ app.get('/api/currentUserData', async (req, res) => {
 	res.json(req.session.user);
 });
 
-app.listen(PORT, () => {
-	console.log(`Server listening on port ${PORT}`);
+app.listen(PORT, HOST, () => {
+	// console.log(`Server listening on port ${PORT}`);
+	console.log(`Server running on http://${HOST}:${PORT}`);
 });
